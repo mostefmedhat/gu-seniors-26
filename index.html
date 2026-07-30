@@ -58,9 +58,9 @@
       <a class="btn btn--outline" href="#sizes">Size Chart</a>
     </div>
 
-    <p class="hero__meta">
+    <p class="hero__meta" id="hero-meta">
       <strong data-price>—</strong>
-      &nbsp;·&nbsp; Orders close <strong data-deadline>—</strong>
+      <span data-deadline-phrase>&nbsp;·&nbsp; Orders close <strong data-deadline>—</strong></span>
     </p>
   </div>
 </section>
@@ -241,7 +241,8 @@
     <div class="order">
       <h2 class="display order__title">Claim your jacket.</h2>
       <p class="order__sub">
-        Limited run. Once orders close <strong data-deadline>—</strong>, that's it.
+        Limited run<span data-deadline-phrase>. Once orders close
+        <strong data-deadline>—</strong></span>, that's it.
       </p>
 
       <form id="order-form" class="order__form" novalidate>

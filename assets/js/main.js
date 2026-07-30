@@ -12,7 +12,17 @@
 
   // =========================================================== setup check
 
-  /** Warns loudly if config.js still has blanks, so it can't ship broken. */
+  var IS_DEV = ['localhost', '127.0.0.1', ''].indexOf(location.hostname) !== -1;
+
+  /**
+   * Warns about unfilled config.
+   *
+   * The banner is developer-facing, so it only renders on localhost — a live
+   * visitor should never be told to go edit config.js. In production the same
+   * warning goes to the console instead. The one warning that DOES stay visible
+   * in production is the size-chart placeholder notice, because ordering a
+   * non-returnable custom jacket off invented measurements costs real money.
+   */
   function checkSetup() {
     var missing = [];
     if (!CFG.ORDERS_ENDPOINT) missing.push('ORDERS_ENDPOINT');
@@ -22,25 +32,40 @@
     if (CFG.SIZES && CFG.SIZES.PLACEHOLDER) missing.push('SIZES (still placeholder)');
 
     if (!missing.length) return;
+    console.warn('[GU] Unconfigured:', missing);
+
+    if (!IS_DEV) return;
 
     var banner = $('#setup-banner');
-    banner.textContent = '⚠ SETUP INCOMPLETE — fill these in assets/js/config.js: ' + missing.join(', ');
+    banner.textContent = '⚠ SETUP INCOMPLETE (shown on localhost only) — fill these in assets/js/config.js: ' + missing.join(', ');
     banner.classList.add('is-visible');
-    console.warn('[GU] Unconfigured:', missing);
   }
 
   // ================================================================ content
 
+  /* Rather than render a bare "—" at visitors, unset values collapse the line
+     they sit in. A missing price should read as "not announced yet", never as
+     a broken page. */
+
   function fillPrice() {
-    if (!CFG.PRICE_EGP) return;
-    $$('[data-price]').forEach(function (el) {
-      el.textContent = Number(CFG.PRICE_EGP).toLocaleString('en-EG') + ' EGP';
-    });
+    if (CFG.PRICE_EGP) {
+      $$('[data-price]').forEach(function (el) {
+        el.textContent = Number(CFG.PRICE_EGP).toLocaleString('en-EG') + ' EGP';
+      });
+    } else {
+      $$('[data-price]').forEach(function (el) { el.textContent = 'the amount'; });
+      var meta = $('#hero-meta');
+      if (meta) meta.hidden = true;
+    }
   }
 
   function fillDeadline() {
-    if (!CFG.ORDER_DEADLINE) return;
-    $$('[data-deadline]').forEach(function (el) { el.textContent = CFG.ORDER_DEADLINE; });
+    if (CFG.ORDER_DEADLINE) {
+      $$('[data-deadline]').forEach(function (el) { el.textContent = CFG.ORDER_DEADLINE; });
+    } else {
+      $$('[data-deadline-phrase]').forEach(function (el) { el.hidden = true; });
+      $$('[data-deadline]').forEach(function (el) { el.textContent = 'soon'; });
+    }
   }
 
   function fillInstagram() {
