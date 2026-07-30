@@ -18,7 +18,7 @@ window.GU_CONFIG = {
    * International format, NO plus sign and NO leading zero.
    * Egyptian 01012345678  ->  '201012345678'
    */
-  WHATSAPP_NUMBER: '',
+  WHATSAPP_NUMBER: '201066828885',
 
   /** Price in EGP, numbers only. e.g. 1450 */
   PRICE_EGP: null,
