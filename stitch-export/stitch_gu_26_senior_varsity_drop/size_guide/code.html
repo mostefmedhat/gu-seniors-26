@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GU Seniors - Size Chart</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600&amp;family=Hanken+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Style Guidance -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b7c4ff",
+                        "surface-container": "#f0edec",
+                        "outline-variant": "#c6c5d1",
+                        "surface-container-highest": "#e5e2e1",
+                        "secondary": "#645e50",
+                        "on-tertiary-fixed-variant": "#0d5300",
+                        "surface-container-high": "#ebe7e7",
+                        "on-primary-container": "#808fcb",
+                        "primary": "#001044",
+                        "tertiary-fixed": "#8cfc6d",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#eae2d0",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "inverse-surface": "#313030",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "tertiary": "#021b00",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#45464f",
+                        "on-tertiary-fixed": "#022100",
+                        "on-secondary-container": "#6a6456",
+                        "secondary-fixed-dim": "#cec6b5",
+                        "on-secondary-fixed-variant": "#4b4639",
+                        "on-secondary-fixed": "#1f1b10",
+                        "surface-dim": "#dcd9d9",
+                        "on-secondary": "#ffffff",
+                        "background": "#fcf9f8",
+                        "surface": "#fcf9f8",
+                        "surface-variant": "#e5e2e1",
+                        "primary-container": "#16265c",
+                        "on-tertiary-container": "#39a620",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-fixed-variant": "#35437a",
+                        "surface-tint": "#4d5b94",
+                        "on-primary-fixed": "#03164d",
+                        "secondary-fixed": "#eae2d0",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "outline": "#767681",
+                        "primary-fixed": "#dce1ff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "tertiary-fixed-dim": "#71df54",
+                        "tertiary-container": "#053200"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "unit": "4px",
+                        "section-gap": "120px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "accent-script": ["Bricolage Grotesque"],
+                        "display-hero-mobile": ["Anton"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "display-hero": ["Anton"],
+                        "headline-lg": ["Anton"]
+                    },
+                    "fontSize": {
+                        "accent-script": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "600" }],
+                        "display-hero-mobile": ["48px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "display-hero": ["80px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Atmospheric Texture: Subtle film grain */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Hard-Edge Shadows for structural stacking */
+        .hard-shadow-primary {
+            box-shadow: 4px 4px 0px 0px theme('colors.primary');
+        }
+        .hard-shadow-primary-lg {
+            box-shadow: 8px 8px 0px 0px theme('colors.primary');
+        }
+        
+        /* Dashed stitch borders */
+        .stitch-border {
+            border-style: dashed;
+            border-width: 2px;
+        }
+    </style>
+</head>
+<body class="bg-surface-container text-on-surface antialiased min-h-screen flex flex-col relative">
+<!-- Film Grain Overlay -->
+<div class="film-grain"></div>
+<!-- TopNavBar -->
+<header class="bg-background dark:bg-background text-primary dark:text-primary-fixed fixed top-0 w-full z-50 border-b-2 border-primary dark:border-primary-fixed-dim flat no shadows flex justify-between items-center px-margin-desktop py-4 max-w-[1440px] mx-auto left-0 right-0">
+<!-- Brand Logo -->
+<div class="font-headline-lg text-headline-lg uppercase tracking-tighter text-primary dark:text-primary-fixed">
+            GU Seniors
+        </div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex gap-8 items-center">
+<!-- Active: Shop -->
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary-fixed-variant transition-colors duration-200 Active: translate-y-0.5 transition-transform font-label-caps text-label-caps uppercase" href="#">Shop</a>
+<!-- Inactive -->
+<a class="text-on-surface-variant font-medium hover:text-primary-fixed-variant transition-colors duration-200 Active: translate-y-0.5 transition-transform font-label-caps text-label-caps uppercase" href="#">Legacy</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-fixed-variant transition-colors duration-200 Active: translate-y-0.5 transition-transform font-label-caps text-label-caps uppercase" href="#">Journal</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<button class="font-label-caps text-label-caps uppercase text-primary hover:text-primary-fixed-variant transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="hidden md:inline">Cart</span>
+</button>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-surface-container-lowest hard-shadow-primary hover:-translate-y-1 transition-transform">
+                Order Now
+            </button>
+</div>
+</header>
+<!-- Main Content: Size Chart -->
+<main class="flex-grow pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full flex flex-col gap-12 mt-12">
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b-2 border-primary pb-6 stitch-border border-t-0 border-l-0 border-r-0">
+<h1 class="font-display-hero-mobile text-display-hero-mobile md:font-display-hero md:text-display-hero uppercase text-primary tracking-tighter m-0">
+                FIND YOUR FIT.
+            </h1>
+<!-- Toggle CM/IN -->
+<div class="flex items-center gap-4 bg-surface-container-lowest border-2 border-primary p-1 hard-shadow-primary w-fit">
+<button class="font-label-caps text-label-caps px-4 py-2 bg-primary text-on-primary">CM</button>
+<button class="font-label-caps text-label-caps px-4 py-2 text-on-surface hover:bg-surface-variant transition-colors">IN</button>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+<!-- Left: Technical Drawing -->
+<div class="lg:col-span-5 bg-surface-container-lowest border-2 border-primary p-6 hard-shadow-primary-lg relative flex flex-col items-center justify-center">
+<!-- Decorative Corner Patches -->
+<div class="absolute top-0 left-0 w-4 h-4 border-b-2 border-r-2 border-primary"></div>
+<div class="absolute top-0 right-0 w-4 h-4 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute bottom-0 left-0 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute bottom-0 right-0 w-4 h-4 border-t-2 border-l-2 border-primary"></div>
+<img class="w-full h-auto object-contain aspect-[3/4]" data-alt="A clean, minimalist line-art technical drawing of a classic American varsity jacket displayed flat on a stark white background. The illustration uses crisp, high-contrast navy blue lines to delineate seams, cuffs, and collar details. Superimposed on the drawing are precise architectural-style measurement arrows labeled 'A', 'B', and 'C' indicating chest width, body length, and sleeve length. The overall aesthetic is highly technical, premium, and editorial, resembling a tailor's blueprint within a quiet luxury sportswear context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBK7uLNXMGlEIyiOY8GNyOkrzaFNd1UkEl1qFVQO9eHugngn5m-6DHOmoVwVxFX0iZWJFKcDg7kcXFxkjdxNoXjsQ4n-kP-5DWX5LxI47untpb4t4KPKepWprkWzRfKbFQ7t8xKbgw9TW6Hib4nLd4EHhhsBob_TXv-3p456rsdLaYvH1563dpa53tEqiBLjHZ9xfnpOWOV67m94V_azTeTH9K7QHuacfvdLMr3u9D2T8IWGN2esCF"/>
+</div>
+<!-- Right: Table & Callouts -->
+<div class="lg:col-span-7 flex flex-col gap-12">
+<!-- Size Table -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr>
+<th class="font-label-caps text-label-caps text-on-surface-variant pb-4 border-b-2 border-primary stitch-border border-t-0 border-l-0 border-r-0 uppercase w-1/4">Size</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant pb-4 border-b-2 border-primary stitch-border border-t-0 border-l-0 border-r-0 uppercase w-1/4">A <span class="font-body-md font-normal hidden sm:inline ml-1">Chest</span></th>
+<th class="font-label-caps text-label-caps text-on-surface-variant pb-4 border-b-2 border-primary stitch-border border-t-0 border-l-0 border-r-0 uppercase w-1/4">B <span class="font-body-md font-normal hidden sm:inline ml-1">Length</span></th>
+<th class="font-label-caps text-label-caps text-on-surface-variant pb-4 border-b-2 border-primary stitch-border border-t-0 border-l-0 border-r-0 uppercase w-1/4">C <span class="font-body-md font-normal hidden sm:inline ml-1">Sleeve</span></th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="hover:bg-surface-variant transition-colors group">
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 font-headline-lg text-headline-lg text-primary">S</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">56</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">66</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">64</td>
+</tr>
+<tr class="hover:bg-surface-variant transition-colors group">
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 font-headline-lg text-headline-lg text-primary">M</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">58</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">68</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">65</td>
+</tr>
+<tr class="hover:bg-surface-variant transition-colors group">
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 font-headline-lg text-headline-lg text-primary">L</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">60</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">70</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">66</td>
+</tr>
+<tr class="hover:bg-surface-variant transition-colors group">
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 font-headline-lg text-headline-lg text-primary">XL</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">63</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">72</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">67</td>
+</tr>
+<tr class="hover:bg-surface-variant transition-colors group">
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 font-headline-lg text-headline-lg text-primary">XXL</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">66</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">74</td>
+<td class="py-6 border-b-2 border-outline-variant stitch-border border-t-0 border-l-0 border-r-0 group-hover:font-bold transition-all">68</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Callout & Fine Print -->
+<div class="flex flex-col gap-6">
+<!-- Forest Green Callout (using tertiary-container for the deep green from palette) -->
+<div class="bg-tertiary-container text-tertiary-fixed border-2 border-tertiary-fixed p-8 flex flex-col md:flex-row gap-6 items-start md:items-center hard-shadow-primary relative overflow-hidden">
+<!-- Decorative background icon -->
+<span class="material-symbols-outlined absolute -right-4 -bottom-8 text-[120px] opacity-10" style="font-variation-settings: 'FILL' 1;">forum</span>
+<div class="flex-grow z-10">
+<p class="font-body-md text-body-md mb-2">
+<strong class="font-label-caps text-label-caps uppercase tracking-widest text-on-tertiary">Oversized Fit Statement</strong><br/>
+                                Our jackets are designed with a deliberate drop-shoulder and relaxed body to accommodate heavy layering. For a traditional, tailored silhouette, we recommend sizing down.
+                            </p>
+</div>
+<a class="z-10 inline-flex items-center gap-2 bg-tertiary-fixed text-tertiary-container font-label-caps text-label-caps uppercase px-6 py-3 border-2 border-tertiary-fixed hover:bg-transparent hover:text-tertiary-fixed transition-colors whitespace-nowrap" href="#">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+                            Message us on WhatsApp
+                        </a>
+</div>
+<!-- Fine Print -->
+<p class="font-label-caps text-label-caps text-on-surface-variant flex items-start gap-2 max-w-2xl">
+<span class="material-symbols-outlined text-[16px] mt-0.5">info</span>
+                        All measurements are taken with the garment laid flat. Please allow a tolerance of +/- 1.5 cm due to the artisanal construction process. Chest is measured pit-to-pit. Length is measured from high point shoulder to hem.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container w-full mt-section-gap border-t-2 border-outline-variant flat no shadows flex flex-col gap-12 px-margin-desktop py-24 w-full relative z-10">
+<div class="max-w-[1440px] mx-auto w-full flex flex-col md:flex-row justify-between items-start gap-12">
+<!-- Brand & Copyright -->
+<div class="flex flex-col gap-4 max-w-md">
+<div class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-container uppercase">
+                    GU Seniors
+                </div>
+<p class="font-body-md text-body-md text-on-primary-fixed-variant">
+                    Premium collegiate sportswear and legacy outerwear. Designed for the elite. Built to outlast.
+                </p>
+<div class="font-label-caps text-label-caps mt-8 text-on-primary-fixed-variant">
+                    © 2024 GU VARSITY. ALL RIGHTS RESERVED.
+                </div>
+</div>
+<!-- Links -->
+<nav class="flex flex-col gap-4 font-label-caps text-label-caps uppercase">
+<a class="text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors scale-105 transition-transform duration-300 w-fit" href="#">Contact</a>
+<a class="text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors scale-105 transition-transform duration-300 w-fit" href="#">Shipping</a>
+<a class="text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors scale-105 transition-transform duration-300 w-fit" href="#">Returns</a>
+<a class="text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors scale-105 transition-transform duration-300 w-fit" href="#">Privacy</a>
+<a class="text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors scale-105 transition-transform duration-300 w-fit flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[16px]">photo_camera</span>
+                    Instagram
+                </a>
+</nav>
+</div>
+</footer>
+</body></html>

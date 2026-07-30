@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GU Seniors - The Jacket Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600&amp;family=Hanken+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b7c4ff",
+                    "surface-container": "#f0edec",
+                    "outline-variant": "#c6c5d1",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary": "#645e50",
+                    "on-tertiary-fixed-variant": "#0d5300",
+                    "surface-container-high": "#ebe7e7",
+                    "on-primary-container": "#808fcb",
+                    "primary": "#001044",
+                    "tertiary-fixed": "#8cfc6d",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#eae2d0",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-surface": "#313030",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1c1b1b",
+                    "tertiary": "#021b00",
+                    "on-surface": "#1c1b1b",
+                    "on-surface-variant": "#45464f",
+                    "on-tertiary-fixed": "#022100",
+                    "on-secondary-container": "#6a6456",
+                    "secondary-fixed-dim": "#cec6b5",
+                    "on-secondary-fixed-variant": "#4b4639",
+                    "on-secondary-fixed": "#1f1b10",
+                    "surface-dim": "#dcd9d9",
+                    "on-secondary": "#ffffff",
+                    "background": "#fcf9f8",
+                    "surface": "#fcf9f8",
+                    "surface-variant": "#e5e2e1",
+                    "primary-container": "#16265c",
+                    "on-tertiary-container": "#39a620",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fcf9f8",
+                    "on-primary-fixed-variant": "#35437a",
+                    "surface-tint": "#4d5b94",
+                    "on-primary-fixed": "#03164d",
+                    "secondary-fixed": "#eae2d0",
+                    "primary-fixed-dim": "#b7c4ff",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "outline": "#767681",
+                    "primary-fixed": "#dce1ff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "tertiary-fixed-dim": "#71df54",
+                    "tertiary-container": "#053200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "unit": "4px",
+                    "section-gap": "120px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "accent-script": [
+                            "Bricolage Grotesque"
+                    ],
+                    "display-hero-mobile": [
+                            "Anton"
+                    ],
+                    "label-caps": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "display-hero": [
+                            "Anton"
+                    ],
+                    "headline-lg": [
+                            "Anton"
+                    ]
+            },
+            "fontSize": {
+                    "accent-script": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "0em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-hero-mobile": [
+                            "48px",
+                            {
+                                    "lineHeight": "44px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-hero": [
+                            "80px",
+                            {
+                                    "lineHeight": "80px",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "40px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        /* Atmospheric Texture */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+        }
+        
+        /* Hard Shadows */
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 16, 68, 1); /* primary color */
+        }
+        .hard-shadow-lg {
+            box-shadow: 8px 8px 0px 0px rgba(0, 16, 68, 1);
+        }
+        
+        /* Monospace for captions */
+        .font-mono-caption {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased overflow-x-hidden min-h-screen pt-[88px]">
+<div class="film-grain"></div>
+<!-- TopNavBar Component -->
+<nav class="bg-background dark:bg-background fixed top-0 w-full z-50 border-b-2 border-primary dark:border-primary-fixed-dim">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-[1440px] mx-auto">
+<div class="font-headline-lg text-headline-lg uppercase tracking-tighter text-primary dark:text-primary-fixed">
+                GU Seniors
+            </div>
+<div class="hidden md:flex gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary-fixed-variant transition-colors duration-200" href="#">Shop</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-fixed-variant transition-colors duration-200 hover:translate-y-0.5 transition-transform" href="#">Legacy</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-fixed-variant transition-colors duration-200 hover:translate-y-0.5 transition-transform" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block bg-primary text-on-primary font-headline-lg text-body-md uppercase border-2 border-surface-container-lowest px-6 py-2 hard-shadow hover:translate-y-0.5 hover:shadow-none transition-all">Order Now</button>
+<button class="text-primary hover:text-primary-fixed-variant transition-colors duration-200 flex items-center font-label-caps text-label-caps uppercase gap-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                    Cart
+                </button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+<!-- Header Section -->
+<header class="mb-16 md:mb-24 max-w-4xl">
+<h2 class="font-label-caps text-label-caps text-tertiary tracking-[0.2em] mb-4 uppercase">The Jacket</h2>
+<h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-background uppercase tracking-tight leading-none mb-6">Built To Be Kept.</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                A modern interpretation of a timeless classic. Crafted with heavyweight materials and custom details, designed exclusively for the Class of '26.
+            </p>
+</header>
+<!-- Asymmetric Editorial Grid -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-section-gap">
+<!-- Large Back Shot (Spans 8 cols) -->
+<div class="md:col-span-8 flex flex-col group">
+<div class="relative w-full h-[60vh] md:h-[80vh] border-2 border-primary overflow-hidden hard-shadow-lg mb-4 bg-secondary-container">
+<img class="w-full h-full object-cover grayscale-[20%] contrast-125 group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A high-contrast, editorial fashion photograph of the back of a luxury varsity jacket. The jacket is navy blue with thick cream leather sleeves and a large, textured chenille patch on the back that reads 'SENIOR 26'. The lighting is moody and cinematic, emphasizing the heavy fleece texture and the intricate stitching of the patch against a minimalist, slightly warm cream background. Vintage sportswear aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzdxSxppV6XBUB1oiOf1ejd-yzqzRGPz159WHYBF5qZGtP2Y6Ai-tIyUip0CBmy45rCqJAP0QUKkcvyW5RDEcxolzf5-t2j5bBrI4gRHJpF9lBk4noyH7vY1IUipAhOoBziaI_pIX4NcJ0WzX3IOQ-MBhMC1wKFgzJWeyzifWSkGLPtzjxJhxAzA1d-Lo-fgpliPyLr4NI91miAfJ5FqpFBBpKUbqfGzFkpv7qVBWLqgvWEsOCaq7J"/>
+</div>
+<div class="flex items-center gap-2 text-primary font-mono-caption text-xs uppercase font-bold tracking-widest">
+<span>01 / BACK — CUSTOM NAME + '26</span>
+<div class="h-[1px] bg-primary flex-grow border-dashed border-b border-primary opacity-50"></div>
+</div>
+</div>
+<!-- Side and Detail Shots (Spans 4 cols) -->
+<div class="md:col-span-4 flex flex-col gap-gutter mt-8 md:mt-24">
+<!-- Side Shot -->
+<div class="flex flex-col group">
+<div class="relative w-full aspect-[3/4] border-2 border-primary overflow-hidden hard-shadow mb-4 bg-secondary-container">
+<img class="w-full h-full object-cover grayscale-[20%] contrast-125 group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A close-up, high-fashion side profile shot of a person wearing a premium navy and cream varsity jacket. Focus is on the shoulder fit and the thick raglan sleeve construction. The lighting casts strong, hard-edged shadows, highlighting the drape of the heavy fleece fabric and the crisp cream border details. Shot in a bright, modern studio setting with a subtle film grain texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc2M-TyUYtUgLjw1RGSGsNa9AZT3DYIkbFX5_az5L_p4YZe0aawAN-n-AR92RHj7W_TY2J7miGuX2wfIP6Opkhs-XKc2fy67jOQeK2l16ViNCFteK3CMOaoP7-41hxRJBM15PTpeQeFEj3W_K2rIoX_8TbUb0quKAbH2XvdZVEgjiPxcdeimeUlX10S7hM4GIwjMZnC84bk9FlruaDrwy5WsM0EVQlkZB9HMRYDIttm7P45u-i5FSW"/>
+</div>
+<div class="flex items-center gap-2 text-primary font-mono-caption text-xs uppercase font-bold tracking-widest">
+<span>02 / SIDE — RAGLAN FIT</span>
+<div class="h-[1px] bg-primary flex-grow border-dashed border-b border-primary opacity-50"></div>
+</div>
+</div>
+<!-- Sleeve Macro -->
+<div class="flex flex-col group mt-auto md:mt-12">
+<div class="relative w-full aspect-square border-2 border-primary overflow-hidden hard-shadow mb-4 bg-secondary-container">
+<img class="w-full h-full object-cover grayscale-[20%] contrast-125 group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="An extreme macro photography shot of the ribbed cuff and leather sleeve of a vintage-style varsity jacket. The image captures the fine details of the thick, striped ribbed knit (navy and cream) and the subtle grain of the premium leather sleeve. High contrast, sharp focus, with a warm, tactile, analog film aesthetic. The lighting is direct, creating hard shadows that emphasize texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA11_n_311cITz8CoTl1DhiyoOvmr9kimE1jjVygMiuy2c90mih25RtU49Tyc4k08k7u2c6ErES-6sVivA7Ap6Chle_623Ynyaoj10lcAKXX3A1EcyURQGE0y6myU6fk-44u7w5HZfHf_7lyofFIt1A9JYBlXt6jBRExdMAHe4aLIPlL0OzeMEWuhcgl8BvPPX7vdz22sk0FDIYzNyRZx4PnCrh40ktjQVgtfZN43HJO_dSOHZXxJuC"/>
+</div>
+<div class="flex items-center gap-2 text-primary font-mono-caption text-xs uppercase font-bold tracking-widest">
+<span>03 / MACRO — PREMIUM RIBBING</span>
+<div class="h-[1px] bg-primary flex-grow border-dashed border-b border-primary opacity-50"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Spec Cards Row -->
+<section class="mb-section-gap">
+<h3 class="font-headline-lg text-accent-script text-primary mb-8 border-b border-dashed border-primary pb-2 inline-block">The Details</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border-2 border-tertiary p-6 hard-shadow flex flex-col gap-4 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(2,27,0,1)] transition-all duration-300">
+<span class="material-symbols-outlined text-4xl text-tertiary">layers</span>
+<h4 class="font-headline-lg text-body-md uppercase text-on-surface">Heavy Fleece</h4>
+<p class="font-body-md text-sm text-on-surface-variant">24oz premium cotton blend for structure and warmth that lasts decades.</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border-2 border-tertiary p-6 hard-shadow flex flex-col gap-4 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(2,27,0,1)] transition-all duration-300">
+<span class="material-symbols-outlined text-4xl text-tertiary">star</span>
+<h4 class="font-headline-lg text-body-md uppercase text-on-surface">Chenille Patches</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Thick, tactile felt lettering stitched with traditional varsity techniques.</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border-2 border-tertiary p-6 hard-shadow flex flex-col gap-4 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(2,27,0,1)] transition-all duration-300">
+<span class="material-symbols-outlined text-4xl text-tertiary">checkroom</span>
+<h4 class="font-headline-lg text-body-md uppercase text-on-surface">Raglan Sleeve</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Athletic cut shoulders for a relaxed, modern drape over heavy layers.</p>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border-2 border-tertiary p-6 hard-shadow flex flex-col gap-4 hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_rgba(2,27,0,1)] transition-all duration-300">
+<span class="material-symbols-outlined text-4xl text-tertiary">signature</span>
+<h4 class="font-headline-lg text-body-md uppercase text-on-surface">Your Name On The Back</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Custom chain-stitched embroidery to secure your legacy.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-primary dark:bg-primary-container w-full mt-section-gap border-t-2 border-outline-variant">
+<div class="flex flex-col gap-12 px-margin-mobile md:px-margin-desktop py-24 w-full max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-container uppercase">
+                    GU Seniors
+                </div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8 w-full md:w-auto font-label-caps text-label-caps uppercase text-on-primary-fixed-variant">
+<div class="flex flex-col gap-4">
+<a class="hover:text-tertiary-fixed transition-colors" href="#">Contact</a>
+<a class="hover:text-tertiary-fixed transition-colors" href="#">Shipping</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="hover:text-tertiary-fixed transition-colors" href="#">Returns</a>
+<a class="hover:text-tertiary-fixed transition-colors" href="#">Privacy</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="hover:text-tertiary-fixed transition-colors" href="#">Instagram</a>
+</div>
+</div>
+</div>
+<div class="font-body-md text-sm text-on-primary-fixed-variant flex justify-between items-center border-t border-dashed border-on-primary-fixed-variant pt-8">
+<p>© 2024 GU VARSITY. ALL RIGHTS RESERVED.</p>
+<div class="hidden md:flex gap-4">
+<span class="material-symbols-outlined hover:text-tertiary-fixed transition-colors cursor-pointer" style="font-variation-settings: 'FILL' 0;">arrow_upward</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

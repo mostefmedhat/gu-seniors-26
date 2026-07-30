@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GU Seniors '26 — Senior Varsity Jacket</title>
+<meta name="description" content="The Galala University Class of 2026 senior varsity jacket. Custom name on the back. Limited run.">
+<meta name="theme-color" content="#16265C">
+
+<meta property="og:title" content="GU Seniors '26 — Senior Varsity Jacket">
+<meta property="og:description" content="Custom name on the back. Limited run. Class of 2026.">
+<meta property="og:image" content="assets/images/back.jpg">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:opsz,wght@12..96,600&family=Hanken+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="setup-banner" class="setup-banner" role="status"></div>
+
+<!-- ============================================================== nav -->
+<header class="nav">
+  <div class="nav__inner">
+    <a class="nav__mark" href="#top">GU SENIORS</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#jacket">The Jacket</a>
+      <a href="#showcase">In 3D</a>
+      <a href="#sizes">Sizes</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--turf" href="#order">Order Now</a>
+  </div>
+</header>
+
+<!-- ============================================================= hero -->
+<section class="hero grain" id="top">
+  <span class="hero__badge label-caps">Galala University — Class of 2026</span>
+
+  <div class="hero__stage">
+    <div class="hero__type">
+      <h1 class="display">
+        <span class="hero__script">the</span>
+        Senior
+        Jacket
+      </h1>
+    </div>
+
+    <img class="hero__photo"
+         src="assets/images/back.jpg"
+         alt="The back of the cream senior varsity jacket, embroidered GALALA 26 Senior with a custom name."
+         width="854" height="1280" fetchpriority="high">
+
+    <div class="hero__cta">
+      <a class="btn btn--turf" href="#order">Reserve Yours</a>
+      <a class="btn btn--outline" href="#sizes">Size Chart</a>
+    </div>
+
+    <p class="hero__meta">
+      <strong data-price>—</strong>
+      &nbsp;·&nbsp; Orders close <strong data-deadline>—</strong>
+    </p>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="marquee-track">
+    <span>Limited run</span><span>·</span>
+    <span>Class of 2026</span><span>·</span>
+    <span>Your name on the back</span><span>·</span>
+    <span>Galala Seniors</span><span>·</span>
+  </div>
+</div>
+
+<!-- =========================================================== jacket -->
+<section class="section section--cream" id="jacket">
+  <div class="wrap">
+    <p class="section__label label-caps">The Jacket</p>
+    <h2 class="display section__title">Built to be kept.</h2>
+
+    <div class="lookbook">
+      <figure class="lookbook__item lookbook__item--a">
+        <img src="assets/images/detail-back.jpg" loading="lazy"
+             alt="Close-up of the embroidered back: GALALA arched over a large 26 with Senior in script." width="854" height="1280">
+        <figcaption class="lookbook__cap">01 / Back — chain-stitch name + '26</figcaption>
+      </figure>
+
+      <figure class="lookbook__item lookbook__item--b">
+        <img src="assets/images/detail-chest.jpg" loading="lazy"
+             alt="Chest detail showing the black felt letter patch and the sleeve crest." width="854" height="1280">
+        <figcaption class="lookbook__cap">02 / Chest — felt letter patch</figcaption>
+      </figure>
+
+      <figure class="lookbook__item lookbook__item--c">
+        <img src="assets/images/detail-crest.jpg" loading="lazy"
+             alt="Embroidered circular class crest on the sleeve reading Class of 2026, Galala Seniors." width="854" height="1280">
+        <figcaption class="lookbook__cap">03 / Sleeve — class of 2026 crest</figcaption>
+      </figure>
+    </div>
+
+    <div class="specs">
+      <article class="spec">
+        <div class="spec__icon">🧵</div>
+        <h3>Heavy Fleece</h3>
+        <p>Thick brushed-back fleece that holds its shape.</p>
+      </article>
+      <article class="spec">
+        <div class="spec__icon">🅰️</div>
+        <h3>Felt Patches</h3>
+        <p>Raised appliqué letters, not a print that peels.</p>
+      </article>
+      <article class="spec">
+        <div class="spec__icon">🧥</div>
+        <h3>Raglan Sleeve</h3>
+        <p>Relaxed varsity cut with ribbed cuff and hem.</p>
+      </article>
+      <article class="spec">
+        <div class="spec__icon">✍️</div>
+        <h3>Your Name</h3>
+        <p>Embroidered across the back. Yours only.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= showcase -->
+<section class="section section--ink showcase" id="showcase">
+  <div class="showcase__ghost" aria-hidden="true">2026</div>
+
+  <div class="wrap">
+    <div class="showcase__grid">
+      <div class="annots">
+        <p class="annot">Felt chest letter</p>
+        <p class="annot">Class crest — left sleeve</p>
+      </div>
+
+      <div class="showcase__stage">
+        <canvas id="jacket-canvas" aria-label="Rotating 3D model of the jacket" role="img"></canvas>
+        <img class="stage-still" id="stage-still" hidden alt="" width="1400" height="1400">
+        <div class="showcase__fallback" id="showcase-fallback" hidden>
+          <img src="assets/images/product-front-cutout.png" width="1200" height="1200"
+               alt="Front of the cream senior varsity jacket." loading="lazy">
+        </div>
+      </div>
+
+      <div class="annots annots--right">
+        <p class="annot">Custom name + '26</p>
+        <p class="annot">Ribbed cuff &amp; hem</p>
+      </div>
+    </div>
+
+    <div class="viewswitch" id="viewswitch" role="tablist" aria-label="Jacket views">
+      <button type="button" role="tab" data-view="3d" aria-selected="true">
+        <span class="vs__3d" aria-hidden="true">↻</span>
+        <span class="vs__label">3D</span>
+      </button>
+      <button type="button" role="tab" data-view="still" aria-selected="false"
+              data-src="assets/images/product-front-cutout.png"
+              data-alt="Front of the jacket: black felt H patch and sleeve crest.">
+        <img src="assets/images/product-front.jpg" alt="" width="1400" height="1400" loading="lazy">
+        <span class="vs__label">Front</span>
+      </button>
+      <button type="button" role="tab" data-view="still" aria-selected="false"
+              data-src="assets/images/product-back-cutout.png"
+              data-alt="Back of the jacket: GALALA, the number 26, Senior script and the custom name.">
+        <img src="assets/images/product-back.jpg" alt="" width="1400" height="1400" loading="lazy">
+        <span class="vs__label">Back</span>
+      </button>
+      <button type="button" role="tab" data-view="still" aria-selected="false"
+              data-src="assets/images/product-side-cutout.png"
+              data-alt="Side profile of the jacket showing the sleeve crest.">
+        <img src="assets/images/product-side.jpg" alt="" width="1400" height="1400" loading="lazy">
+        <span class="vs__label">Side</span>
+      </button>
+    </div>
+
+    <p class="showcase__hint" id="showcase-hint">↻ Drag to rotate</p>
+  </div>
+</section>
+
+<!-- ============================================================ sizes -->
+<section class="section section--cream" id="sizes">
+  <div class="wrap">
+    <p class="section__label label-caps">Size Guide</p>
+    <h2 class="display section__title">Find your fit.</h2>
+
+    <div class="sizes">
+      <div class="sizes__figure">
+        <img src="assets/images/product-front.jpg" loading="lazy"
+             alt="Front view of the jacket, used as the measurement reference." width="1400" height="1400">
+        <p class="size-note">
+          <strong>A</strong> chest, armpit to armpit ·
+          <strong>B</strong> length, shoulder to hem ·
+          <strong>C</strong> sleeve, shoulder to cuff
+        </p>
+      </div>
+
+      <div>
+        <div class="unit-toggle" role="group" aria-label="Units">
+          <button type="button" data-unit="cm" aria-pressed="true">cm</button>
+          <button type="button" data-unit="in" aria-pressed="false">in</button>
+        </div>
+
+        <div id="size-table-wrap">
+          <table class="size-table">
+            <caption class="visually-hidden">Garment measurements by size</caption>
+            <thead>
+              <tr>
+                <th scope="col">Size</th>
+                <th scope="col">A Chest <span data-unit-label>(cm)</span></th>
+                <th scope="col">B Length <span data-unit-label>(cm)</span></th>
+                <th scope="col">C Sleeve <span data-unit-label>(cm)</span></th>
+              </tr>
+            </thead>
+            <tbody id="size-body"></tbody>
+          </table>
+        </div>
+
+        <p class="size-note" id="size-placeholder-note" hidden>
+          <strong>⚠ These numbers are placeholders.</strong>
+          Replace them with real measurements in <code>assets/js/config.js</code>
+          before sharing this page.
+        </p>
+
+        <div class="size-callout">
+          Oversized fit — if you're between sizes, size down.
+          Still unsure? Message us on WhatsApp before you order.
+        </div>
+
+        <p class="size-note">Garment measured flat. Allow ±2&nbsp;cm.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ order -->
+<section class="section section--navy grain" id="order">
+  <div class="wrap">
+    <div class="order">
+      <h2 class="display order__title">Claim your jacket.</h2>
+      <p class="order__sub">
+        Limited run. Once orders close <strong data-deadline>—</strong>, that's it.
+      </p>
+
+      <form id="order-form" class="order__form" novalidate>
+
+        <div class="field" id="field-fullName">
+          <label for="fullName">Full name</label>
+          <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+          <p class="field__error">Enter your full name.</p>
+        </div>
+
+        <div class="field" id="field-whatsapp">
+          <label for="whatsapp">WhatsApp number</label>
+          <input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric"
+                 placeholder="01012345678" autocomplete="tel" required>
+          <p class="field__error">Use a valid Egyptian mobile.</p>
+        </div>
+
+        <div class="field" id="field-faculty">
+          <label for="faculty">Faculty</label>
+          <select id="faculty" name="faculty" required>
+            <option value="">Select faculty</option>
+          </select>
+        </div>
+
+        <hr class="form__divider">
+        <h3 class="form__legend">Customisation</h3>
+
+        <div class="customize">
+          <div>
+            <div class="field" id="field-nameOnBack">
+              <label for="nameOnBack">Name on back</label>
+              <span class="field__counter" id="name-counter">0/12</span>
+              <input id="nameOnBack" name="nameOnBack" type="text" maxlength="12" required>
+              <p class="field__error">1–12 characters.</p>
+            </div>
+
+            <div class="field" id="field-number">
+              <label for="numberOnBack">Number on back</label>
+              <input id="numberOnBack" name="numberOnBack" type="text"
+                     inputmode="numeric" maxlength="2" placeholder="26">
+              <p class="field__error">1–2 digits.</p>
+            </div>
+
+            <div class="field">
+              <label id="size-label">Size</label>
+              <div class="size-picker" role="radiogroup" aria-labelledby="size-label">
+                <input type="radio" id="size-s"   name="size" value="S"><label for="size-s">S</label>
+                <input type="radio" id="size-m"   name="size" value="M"><label for="size-m">M</label>
+                <input type="radio" id="size-l"   name="size" value="L"><label for="size-l">L</label>
+                <input type="radio" id="size-xl"  name="size" value="XL"><label for="size-xl">XL</label>
+                <input type="radio" id="size-xxl" name="size" value="XXL"><label for="size-xxl">XXL</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- live preview of the back print -->
+          <div class="preview" aria-live="polite">
+            <div class="preview__arc">GALALA</div>
+            <div class="preview__numwrap">
+              <div class="preview__num" id="preview-num">26</div>
+              <div class="preview__script">Senior</div>
+            </div>
+            <div class="preview__name" id="preview-name">YOUR NAME</div>
+            <div class="preview__tag">Live preview</div>
+          </div>
+        </div>
+
+        <hr class="form__divider">
+        <h3 class="form__legend">Payment method</h3>
+
+        <div class="pay-picker" role="radiogroup" aria-label="Payment method">
+          <input type="radio" id="pay-instapay" name="paymentMethod" value="InstaPay">
+          <label for="pay-instapay">
+            <div class="pay__icon">🏦</div>
+            <span class="pay__name">InstaPay</span>
+            <span class="pay__hint">Send screenshot after</span>
+          </label>
+
+          <input type="radio" id="pay-vf" name="paymentMethod" value="Vodafone Cash">
+          <label for="pay-vf">
+            <div class="pay__icon">📱</div>
+            <span class="pay__name">Vodafone Cash</span>
+            <span class="pay__hint">Send screenshot after</span>
+          </label>
+
+          <input type="radio" id="pay-cash" name="paymentMethod" value="Cash">
+          <label for="pay-cash">
+            <div class="pay__icon">💵</div>
+            <span class="pay__name">Cash</span>
+            <span class="pay__hint">Arrange on campus</span>
+          </label>
+        </div>
+
+        <div class="field" style="margin-top:24px">
+          <label for="notes">Notes (optional)</label>
+          <textarea id="notes" name="notes" maxlength="500"></textarea>
+        </div>
+
+        <!-- honeypot: hidden from humans, catches bots -->
+        <div class="visually-hidden" aria-hidden="true">
+          <label for="website">Leave this empty</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn btn--turf form__submit">Place Order</button>
+
+        <p class="form__status" id="form-status" role="alert"></p>
+        <p class="form__fineprint">
+          You'll get an order number on the next screen. Send your payment
+          screenshot with that number on WhatsApp.
+        </p>
+      </form>
+
+      <!-- ------------------------------------------------ success state -->
+      <div class="success" id="success">
+        <div class="success__check" aria-hidden="true">✓</div>
+        <h3 class="display" style="font-size:clamp(32px,7vw,56px)">Order received</h3>
+        <p style="color:rgba(251,248,241,.72)">Your order number is</p>
+
+        <div class="success__num" id="success-number">—</div>
+        <button type="button" class="copy-btn" id="copy-btn">Copy</button>
+
+        <a class="btn btn--whatsapp" id="wa-link" target="_blank" rel="noopener">
+          Send payment proof on WhatsApp
+        </a>
+
+        <ol class="steps">
+          <li id="step-transfer">
+            Transfer <strong data-price>—</strong> using the method you picked.
+          </li>
+          <li id="step-screenshot">
+            Screenshot the confirmation.
+          </li>
+          <li id="step-cash" hidden>
+            Message us to arrange handing over the cash on campus.
+          </li>
+          <li>
+            Send it on WhatsApp <strong>with your order number</strong> so we can
+            match it to your jacket.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== faq -->
+<section class="section section--cream" id="faq">
+  <div class="wrap">
+    <p class="section__label label-caps">FAQ</p>
+    <h2 class="display section__title">Questions.</h2>
+
+    <div class="faq">
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">When do orders close?<span class="faq__sign">+</span></button>
+        <div class="faq__a"><p>Orders close <strong data-deadline>—</strong>. We order in one batch from the manufacturer, so we can't add jackets after that.</p></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">When do I get it?<span class="faq__sign">+</span></button>
+        <div class="faq__a"><p>Production starts once orders close. We'll message the whole group on WhatsApp with the collection date as soon as we have it.</p></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Can I change my name or size later?<span class="faq__sign">+</span></button>
+        <div class="faq__a"><p>Yes, but only before orders close. Message us on WhatsApp with your order number. After the batch goes to production nothing can change — every jacket is embroidered individually.</p></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">How do I pay?<span class="faq__sign">+</span></button>
+        <div class="faq__a"><p>InstaPay or Vodafone Cash — you'll get the account details on WhatsApp after you order. Send the payment screenshot with your order number so we can match it. Cash on campus can be arranged too.</p></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">What if it doesn't fit?<span class="faq__sign">+</span></button>
+        <div class="faq__a"><p>The fit is oversized by design. Check the size chart carefully before ordering — because each jacket carries your name, we can't resell or exchange it.</p></div>
+      </div>
+
+      <div class="faq__item">
+        <button class="faq__q" aria-expanded="false">Can non-seniors order one?<span class="faq__sign">+</span></button>
+        <div class="faq__a"><p>The back reads <em>Senior '26</em>, so it's really made for the graduating class. Message us if you still want one.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== footer -->
+<footer class="section--ink footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <p class="label-caps" style="opacity:.6;margin:0 0 8px">Galala University</p>
+        <p style="margin:0;font-size:18px">Made by the Class of 2026.</p>
+      </div>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#jacket">The Jacket</a>
+        <a href="#sizes">Sizes</a>
+        <a href="#faq">FAQ</a>
+        <a href="#order">Order</a>
+        <a href="#" data-instagram target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="footer__wordmark" aria-hidden="true">GU SENIORS '26</div>
+
+  <p class="footer__fine">
+    © <span id="year">2026</span> GU Seniors '26 · Not an official Galala University store.
+  </p>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="assets/js/viewer.js"></script>
+
+</body>
+</html>

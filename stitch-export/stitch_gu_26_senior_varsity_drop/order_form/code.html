@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GU Seniors - Claim Your Jacket</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600&amp;family=Hanken+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b7c4ff",
+                        "surface-container": "#f0edec",
+                        "outline-variant": "#c6c5d1",
+                        "surface-container-highest": "#e5e2e1",
+                        "secondary": "#645e50",
+                        "on-tertiary-fixed-variant": "#0d5300",
+                        "surface-container-high": "#ebe7e7",
+                        "on-primary-container": "#808fcb",
+                        "primary": "#001044",
+                        "tertiary-fixed": "#8cfc6d",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#eae2d0",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f6f3f2",
+                        "inverse-surface": "#313030",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1c1b1b",
+                        "tertiary": "#021b00",
+                        "on-surface": "#1c1b1b",
+                        "on-surface-variant": "#45464f",
+                        "on-tertiary-fixed": "#022100",
+                        "on-secondary-container": "#6a6456",
+                        "secondary-fixed-dim": "#cec6b5",
+                        "on-secondary-fixed-variant": "#4b4639",
+                        "on-secondary-fixed": "#1f1b10",
+                        "surface-dim": "#dcd9d9",
+                        "on-secondary": "#ffffff",
+                        "background": "#fcf9f8",
+                        "surface": "#fcf9f8",
+                        "surface-variant": "#e5e2e1",
+                        "primary-container": "#16265c",
+                        "on-tertiary-container": "#39a620",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#fcf9f8",
+                        "on-primary-fixed-variant": "#35437a",
+                        "surface-tint": "#4d5b94",
+                        "on-primary-fixed": "#03164d",
+                        "secondary-fixed": "#eae2d0",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "outline": "#767681",
+                        "primary-fixed": "#dce1ff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "tertiary-fixed-dim": "#71df54",
+                        "tertiary-container": "#053200"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "margin-mobile": "20px",
+                        "unit": "4px",
+                        "section-gap": "120px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "accent-script": ["Bricolage Grotesque"],
+                        "display-hero-mobile": ["Anton"],
+                        "label-caps": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "display-hero": ["Anton"],
+                        "headline-lg": ["Anton"]
+                    },
+                    "fontSize": {
+                        "accent-script": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "600" }],
+                        "display-hero-mobile": ["48px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "display-hero": ["80px", { "lineHeight": "80px", "letterSpacing": "-0.04em", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+        
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px theme('colors.primary');
+        }
+        
+        .hard-shadow-light {
+            box-shadow: 4px 4px 0px 0px theme('colors.surface-container-lowest');
+        }
+
+        .stitch-border {
+            border: 2px dashed theme('colors.surface-container-lowest');
+        }
+        
+        .text-outline {
+            -webkit-text-stroke: 1px theme('colors.primary');
+            color: transparent;
+        }
+
+        /* Floating label styles */
+        .floating-input:focus-within label,
+        .floating-input input:not(:placeholder-shown) + label {
+            transform: translateY(-120%) scale(0.8);
+            color: theme('colors.surface-container-lowest');
+        }
+    </style>
+</head>
+<body class="bg-primary-container text-surface-container-lowest antialiased min-h-screen relative">
+<div class="film-grain"></div>
+<main class="w-full max-w-[640px] mx-auto px-margin-mobile md:px-margin-desktop py-24 flex flex-col gap-12 relative z-10">
+<!-- Header -->
+<header class="text-center">
+<h1 class="font-display-hero-mobile text-display-hero-mobile md:font-display-hero md:text-display-hero text-surface-container-lowest uppercase mb-2">Claim Your Jacket.</h1>
+<p class="font-body-md text-body-md text-primary-fixed-dim">Join the legacy. Secure your custom varsity.</p>
+</header>
+<!-- Form Container -->
+<form class="flex flex-col gap-8">
+<!-- Personal Info Section -->
+<section class="flex flex-col gap-6">
+<div class="relative floating-input bg-surface-container-lowest/10 border-2 border-surface-container-lowest p-4 rounded-sm">
+<input class="w-full bg-transparent font-body-md text-body-md text-surface-container-lowest outline-none placeholder-transparent border-none p-0 focus:ring-0" id="fullName" placeholder=" " required="" type="text"/>
+<label class="absolute left-4 top-4 font-label-caps text-label-caps text-primary-fixed-dim uppercase transition-all duration-200 pointer-events-none" for="fullName">Full Name</label>
+</div>
+<div class="relative floating-input bg-surface-container-lowest/10 border-2 border-surface-container-lowest p-4 rounded-sm">
+<input class="w-full bg-transparent font-body-md text-body-md text-surface-container-lowest outline-none placeholder-transparent border-none p-0 focus:ring-0" id="whatsapp" placeholder=" " required="" type="tel"/>
+<label class="absolute left-4 top-4 font-label-caps text-label-caps text-primary-fixed-dim uppercase transition-all duration-200 pointer-events-none" for="whatsapp">WhatsApp Number</label>
+</div>
+<div class="relative bg-surface-container-lowest/10 border-2 border-surface-container-lowest p-4 rounded-sm flex items-center">
+<select class="w-full bg-transparent font-body-md text-body-md text-surface-container-lowest outline-none border-none p-0 focus:ring-0 appearance-none cursor-pointer" id="faculty" required="">
+<option class="text-on-surface" disabled="" selected="" value="">Select Faculty</option>
+<option class="text-on-surface" value="engineering">Engineering</option>
+<option class="text-on-surface" value="business">Business</option>
+<option class="text-on-surface" value="arts">Arts &amp; Design</option>
+<option class="text-on-surface" value="science">Sciences</option>
+</select>
+<span class="material-symbols-outlined text-surface-container-lowest absolute right-4 pointer-events-none">arrow_drop_down</span>
+</div>
+</section>
+<!-- Customization Section -->
+<section class="flex flex-col gap-6 pt-6 border-t-2 border-surface-container-lowest/20">
+<h2 class="font-headline-lg text-headline-lg uppercase text-surface-container-lowest">Customization</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Inputs -->
+<div class="flex flex-col gap-6">
+<div class="relative floating-input bg-surface-container-lowest/10 border-2 border-surface-container-lowest p-4 rounded-sm">
+<input class="w-full bg-transparent font-body-md text-body-md text-surface-container-lowest outline-none placeholder-transparent border-none p-0 focus:ring-0 uppercase" id="jacketName" maxlength="12" oninput="updatePreviewName(this.value)" placeholder=" " required="" type="text"/>
+<label class="absolute left-4 top-4 font-label-caps text-label-caps text-primary-fixed-dim uppercase transition-all duration-200 pointer-events-none" for="jacketName">Name on Back</label>
+<span class="absolute right-4 top-4 font-label-caps text-label-caps text-primary-fixed-dim"><span id="nameCount">0</span>/12</span>
+</div>
+<div class="relative floating-input bg-surface-container-lowest/10 border-2 border-surface-container-lowest p-4 rounded-sm">
+<input class="w-full bg-transparent font-body-md text-body-md text-surface-container-lowest outline-none placeholder-transparent border-none p-0 focus:ring-0" id="jacketNumber" maxlength="2" oninput="updatePreviewNumber(this.value)" pattern="[0-9]*" placeholder=" " required="" type="text"/>
+<label class="absolute left-4 top-4 font-label-caps text-label-caps text-primary-fixed-dim uppercase transition-all duration-200 pointer-events-none" for="jacketNumber">Number on Back</label>
+</div>
+<!-- Size Selector -->
+<div class="flex flex-col gap-2 mt-2">
+<span class="font-label-caps text-label-caps text-primary-fixed-dim uppercase">Size</span>
+<div class="flex w-full border-2 border-surface-container-lowest rounded-sm overflow-hidden">
+<label class="flex-1 text-center cursor-pointer">
+<input class="peer sr-only" name="size" type="radio" value="S"/>
+<div class="py-3 font-body-md text-body-md text-surface-container-lowest peer-checked:bg-surface-container-lowest peer-checked:text-primary-container transition-colors">S</div>
+</label>
+<div class="w-[2px] bg-surface-container-lowest"></div>
+<label class="flex-1 text-center cursor-pointer">
+<input checked="" class="peer sr-only" name="size" type="radio" value="M"/>
+<div class="py-3 font-body-md text-body-md text-surface-container-lowest peer-checked:bg-surface-container-lowest peer-checked:text-primary-container transition-colors">M</div>
+</label>
+<div class="w-[2px] bg-surface-container-lowest"></div>
+<label class="flex-1 text-center cursor-pointer">
+<input class="peer sr-only" name="size" type="radio" value="L"/>
+<div class="py-3 font-body-md text-body-md text-surface-container-lowest peer-checked:bg-surface-container-lowest peer-checked:text-primary-container transition-colors">L</div>
+</label>
+<div class="w-[2px] bg-surface-container-lowest"></div>
+<label class="flex-1 text-center cursor-pointer">
+<input class="peer sr-only" name="size" type="radio" value="XL"/>
+<div class="py-3 font-body-md text-body-md text-surface-container-lowest peer-checked:bg-surface-container-lowest peer-checked:text-primary-container transition-colors">XL</div>
+</label>
+<div class="w-[2px] bg-surface-container-lowest"></div>
+<label class="flex-1 text-center cursor-pointer">
+<input class="peer sr-only" name="size" type="radio" value="XXL"/>
+<div class="py-3 font-body-md text-body-md text-surface-container-lowest peer-checked:bg-surface-container-lowest peer-checked:text-primary-container transition-colors">XXL</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Live Preview -->
+<div class="bg-surface-container-lowest p-6 flex flex-col items-center justify-center min-h-[300px] border-2 border-surface-container-lowest hard-shadow-light relative overflow-hidden">
+<!-- Abstract Varsity Back Graphic -->
+<div class="w-full max-w-[200px] aspect-[3/4] bg-primary relative rounded-t-3xl border-4 border-surface-container-lowest flex flex-col items-center pt-8">
+<!-- Collar -->
+<div class="absolute -top-4 w-1/2 h-8 bg-surface-container-lowest rounded-full"></div>
+<!-- Custom Name -->
+<div class="w-full text-center px-2 mt-4">
+<span class="font-headline-lg text-headline-lg text-surface-container-lowest uppercase tracking-widest block truncate" id="previewName" style="font-size: 24px; line-height: 24px;">YOUR NAME</span>
+</div>
+<!-- Custom Number -->
+<div class="mt-auto mb-12 relative flex items-center justify-center">
+<span class="font-display-hero text-display-hero text-surface-container-lowest absolute z-10" id="previewNumber" style="font-size: 80px; line-height: 80px;">24</span>
+<span class="font-display-hero text-display-hero text-primary text-outline absolute translate-x-2 translate-y-2 z-0" id="previewNumberShadow" style="font-size: 80px; line-height: 80px;">24</span>
+</div>
+</div>
+<span class="absolute bottom-4 right-4 font-label-caps text-label-caps text-primary bg-surface-container-lowest px-2 py-1 uppercase">Live Preview</span>
+</div>
+</div>
+</section>
+<!-- Payment Section -->
+<section class="flex flex-col gap-6 pt-6 border-t-2 border-surface-container-lowest/20">
+<h2 class="font-headline-lg text-headline-lg uppercase text-surface-container-lowest">Payment Method</h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<label class="relative cursor-pointer">
+<input checked="" class="peer sr-only" name="payment" type="radio" value="instapay"/>
+<div class="h-full border-2 border-surface-container-lowest bg-surface-container-lowest/10 p-4 text-center peer-checked:bg-surface-container-lowest peer-checked:text-primary-container transition-all flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-[32px]">account_balance</span>
+<span class="font-label-caps text-label-caps uppercase">InstaPay</span>
+</div>
+<div class="absolute inset-0 border-2 border-surface-container-lowest hidden peer-checked:block hard-shadow-light pointer-events-none"></div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="payment" type="radio" value="vodafone"/>
+<div class="h-full border-2 border-surface-container-lowest bg-surface-container-lowest/10 p-4 text-center peer-checked:bg-surface-container-lowest peer-checked:text-primary-container transition-all flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-[32px]">phone_iphone</span>
+<span class="font-label-caps text-label-caps uppercase">Vodafone Cash</span>
+</div>
+<div class="absolute inset-0 border-2 border-surface-container-lowest hidden peer-checked:block hard-shadow-light pointer-events-none"></div>
+</label>
+<label class="relative cursor-pointer">
+<input class="peer sr-only" name="payment" type="radio" value="cash"/>
+<div class="h-full border-2 border-surface-container-lowest bg-surface-container-lowest/10 p-4 text-center peer-checked:bg-surface-container-lowest peer-checked:text-primary-container transition-all flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-[32px]">payments</span>
+<span class="font-label-caps text-label-caps uppercase">Cash on Campus</span>
+</div>
+<div class="absolute inset-0 border-2 border-surface-container-lowest hidden peer-checked:block hard-shadow-light pointer-events-none"></div>
+</label>
+</div>
+</section>
+<!-- Submit Action -->
+<div class="mt-8 flex flex-col gap-4">
+<button class="w-full bg-tertiary-fixed text-on-tertiary-fixed font-headline-lg text-headline-lg uppercase py-4 border-2 border-tertiary-fixed hover:bg-tertiary-fixed-dim transition-colors hard-shadow" type="submit">
+                    Place Order
+                </button>
+<p class="text-center font-body-md text-body-md text-primary-fixed-dim text-sm">
+                    For digital payments, you will be prompted to upload a screenshot of your transfer receipt on the next screen.
+                </p>
+</div>
+</form>
+</main>
+<script>
+        // Form interactivity
+        function updatePreviewName(val) {
+            const displayVal = val.toUpperCase() || 'YOUR NAME';
+            document.getElementById('previewName').textContent = displayVal;
+            document.getElementById('nameCount').textContent = val.length;
+        }
+
+        function updatePreviewNumber(val) {
+            const displayVal = val || '24';
+            document.getElementById('previewNumber').textContent = displayVal;
+            document.getElementById('previewNumberShadow').textContent = displayVal;
+        }
+    </script>
+</body></html>

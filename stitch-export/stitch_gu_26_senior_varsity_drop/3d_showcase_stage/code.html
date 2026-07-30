@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GU Seniors - 3D Showcase</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts based on Style Guidance -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600&amp;family=Hanken+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#b7c4ff",
+                    "surface-container": "#f0edec",
+                    "outline-variant": "#c6c5d1",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary": "#645e50",
+                    "on-tertiary-fixed-variant": "#0d5300",
+                    "surface-container-high": "#ebe7e7",
+                    "on-primary-container": "#808fcb",
+                    "primary": "#001044",
+                    "tertiary-fixed": "#8cfc6d",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#eae2d0",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-surface": "#313030",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "on-background": "#1c1b1b",
+                    "tertiary": "#021b00",
+                    "on-surface": "#1c1b1b",
+                    "on-surface-variant": "#45464f",
+                    "on-tertiary-fixed": "#022100",
+                    "on-secondary-container": "#6a6456",
+                    "secondary-fixed-dim": "#cec6b5",
+                    "on-secondary-fixed-variant": "#4b4639",
+                    "on-secondary-fixed": "#1f1b10",
+                    "surface-dim": "#dcd9d9",
+                    "on-secondary": "#ffffff",
+                    "background": "#fcf9f8",
+                    "surface": "#fcf9f8",
+                    "surface-variant": "#e5e2e1",
+                    "primary-container": "#16265c",
+                    "on-tertiary-container": "#39a620",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fcf9f8",
+                    "on-primary-fixed-variant": "#35437a",
+                    "surface-tint": "#4d5b94",
+                    "on-primary-fixed": "#03164d",
+                    "secondary-fixed": "#eae2d0",
+                    "primary-fixed-dim": "#b7c4ff",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "outline": "#767681",
+                    "primary-fixed": "#dce1ff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "tertiary-fixed-dim": "#71df54",
+                    "tertiary-container": "#053200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "unit": "4px",
+                    "section-gap": "120px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "accent-script": [
+                            "Bricolage Grotesque"
+                    ],
+                    "display-hero-mobile": [
+                            "Anton"
+                    ],
+                    "label-caps": [
+                            "Hanken Grotesk"
+                    ],
+                    "body-md": [
+                            "Hanken Grotesk"
+                    ],
+                    "display-hero": [
+                            "Anton"
+                    ],
+                    "headline-lg": [
+                            "Anton"
+                    ]
+            },
+            "fontSize": {
+                    "accent-script": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "0em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-hero-mobile": [
+                            "48px",
+                            {
+                                    "lineHeight": "44px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display-hero": [
+                            "80px",
+                            {
+                                    "lineHeight": "80px",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "40px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Subtle film grain texture overlay */
+        .film-grain {
+            position: relative;
+        }
+        .film-grain::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Custom huge text scaling for background */
+        .scale-huge {
+            transform: scale(3);
+        }
+        @media (min-width: 768px) {
+            .scale-huge {
+                transform: scale(6);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased film-grain flex flex-col min-h-screen">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 w-full z-50 bg-background border-b-2 border-primary flat no shadows">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-[1440px] mx-auto">
+<a class="font-headline-lg text-headline-lg uppercase tracking-tighter text-primary" href="#">
+                GU Seniors
+            </a>
+<nav class="hidden md:flex items-center gap-gutter">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary-fixed-variant transition-colors duration-200 hover:-translate-y-0.5 transition-transform" href="#">Shop</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-fixed-variant transition-colors duration-200 hover:-translate-y-0.5 transition-transform" href="#">Legacy</a>
+<a class="text-on-surface-variant font-medium hover:text-primary-fixed-variant transition-colors duration-200 hover:-translate-y-0.5 transition-transform" href="#">Journal</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:block font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Order Now</button>
+<button class="font-label-caps text-label-caps bg-primary text-surface-container-lowest px-4 py-2 border-2 border-surface-container-low shadow-[4px_4px_0px_theme(colors.on-background)] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[2px_2px_0px_theme(colors.on-background)] transition-all">Cart</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-[80px]">
+<!-- 3D Showcase Section -->
+<section class="relative w-full min-h-[921px] bg-primary flex flex-col items-center justify-center overflow-hidden py-section-gap select-none">
+<!-- Atmospheric Enormous Background Text -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+<span class="font-display-hero text-display-hero text-transparent scale-huge" style="-webkit-text-stroke: 2px theme('colors.surface-container-low');">
+                    2026
+                </span>
+</div>
+<!-- Stage Container -->
+<div class="relative w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row items-center justify-center z-10 h-[614px] md:h-[716px]">
+<!-- Desktop Left Annotations -->
+<div class="hidden md:flex flex-col justify-center gap-24 w-1/4 text-right pr-12 h-full">
+<div class="relative group">
+<span class="font-label-caps text-label-caps text-surface-container-low border-b border-surface-container-low/50 pb-1 tracking-widest">CHENILLE 'H' PATCH</span>
+<div class="absolute top-1/2 right-[-3rem] w-12 h-[1px] bg-surface-container-low/50 origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+</div>
+<div class="relative group">
+<span class="font-label-caps text-label-caps text-surface-container-low border-b border-surface-container-low/50 pb-1 tracking-widest">CLASS CREST</span>
+<div class="absolute top-1/2 right-[-3rem] w-12 h-[1px] bg-surface-container-low/50 origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+</div>
+</div>
+<!-- Center 3D Viewer Area -->
+<div class="relative w-full md:w-1/2 h-full flex flex-col items-center justify-center">
+<!-- Radial Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-primary-container blur-[100px] rounded-full pointer-events-none opacity-80"></div>
+<!-- 3D Object Render (Placeholder Image) -->
+<div class="relative w-full max-w-[500px] aspect-square mx-auto cursor-grab active:cursor-grabbing z-20 transition-transform duration-700 ease-out hover:scale-105 group">
+<img class="w-full h-full object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.8)] pointer-events-none transition-all duration-500 group-hover:drop-shadow-[0_40px_80px_rgba(0,0,0,0.9)]" data-alt="A highly detailed, photorealistic 3D render of a premium vintage-style varsity jacket floating in mid-air within a dark, atmospheric studio environment. The jacket features thick cream-colored genuine leather sleeves and a rich, deep navy blue heavy wool body. Intricate, tactile chenille patches and chain-stitch embroidery detail the 'Class of 2026' insignias. The lighting is dramatic and cinematic, utilizing a soft, focused spotlight to accentuate the luxurious textures of the wool and leather against a pitch-black, infinite void background. The aesthetic is high-end editorial streetwear, emphasizing contrast, depth, and material quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP-H3Su8GH51zK_omH0yOf230KyS_0VLP6XKxLbuAvK35TcdSv_gdlBNOjYa2F9zhYtp0XuO793qzGcSi7KEeP6BXEA5E4TP35ceCz1Xg6Aw9xnO1eTN3E7sLbTzmmLLzvAQqJT6XE_pBm8ek4STIIIuYDWKl2qPS2vpAd6QGG1Qs7LjZMS9v_qcuykenYWgdtDAWHzvfiQm0uXG6qtjx-LZIvnT_fIIPY76VC_-XPg_h8PNFgkzHy"/>
+</div>
+<!-- Interaction Hint -->
+<div class="absolute bottom-[-2rem] md:bottom-8 flex items-center gap-2 text-surface-container-low/70 animate-pulse">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 0;">360</span>
+<span class="font-label-caps text-label-caps tracking-[0.2em]">DRAG TO ROTATE</span>
+</div>
+</div>
+<!-- Desktop Right Annotations -->
+<div class="hidden md:flex flex-col justify-center gap-24 w-1/4 text-left pl-12 h-full">
+<div class="relative group">
+<div class="absolute top-1/2 left-[-3rem] w-12 h-[1px] bg-surface-container-low/50 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+<span class="font-label-caps text-label-caps text-surface-container-low border-b border-surface-container-low/50 pb-1 tracking-widest">CUSTOM NAME</span>
+</div>
+<div class="relative group">
+<div class="absolute top-1/2 left-[-3rem] w-12 h-[1px] bg-surface-container-low/50 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+<span class="font-label-caps text-label-caps text-surface-container-low border-b border-surface-container-low/50 pb-1 tracking-widest">RIBBED CUFF</span>
+</div>
+</div>
+</div>
+<!-- Mobile Stacked Annotations -->
+<div class="md:hidden flex flex-col gap-6 mt-16 w-full px-margin-mobile z-10 max-w-[400px]">
+<div class="flex items-center justify-between border-b border-surface-container-low/30 pb-2">
+<span class="font-label-caps text-label-caps text-surface-container-low tracking-wider">CHENILLE 'H' PATCH</span>
+<span class="material-symbols-outlined text-surface-container-low/50 text-[14px]">add</span>
+</div>
+<div class="flex items-center justify-between border-b border-surface-container-low/30 pb-2">
+<span class="font-label-caps text-label-caps text-surface-container-low tracking-wider">CLASS CREST</span>
+<span class="material-symbols-outlined text-surface-container-low/50 text-[14px]">add</span>
+</div>
+<div class="flex items-center justify-between border-b border-surface-container-low/30 pb-2">
+<span class="font-label-caps text-label-caps text-surface-container-low tracking-wider">CUSTOM NAME</span>
+<span class="material-symbols-outlined text-surface-container-low/50 text-[14px]">add</span>
+</div>
+<div class="flex items-center justify-between border-b border-surface-container-low/30 pb-2">
+<span class="font-label-caps text-label-caps text-surface-container-low tracking-wider">RIBBED CUFF</span>
+<span class="material-symbols-outlined text-surface-container-low/50 text-[14px]">add</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full mt-section-gap border-t-2 border-outline-variant bg-primary">
+<div class="flex flex-col gap-12 px-margin-desktop py-24 w-full max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="font-headline-lg text-headline-lg text-on-primary uppercase">
+                    GU Seniors
+                </div>
+<nav class="flex flex-wrap gap-8">
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors hover:scale-105 duration-300 transform inline-block" href="#">Contact</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors hover:scale-105 duration-300 transform inline-block" href="#">Shipping</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors hover:scale-105 duration-300 transform inline-block" href="#">Returns</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors hover:scale-105 duration-300 transform inline-block" href="#">Privacy</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors hover:scale-105 duration-300 transform inline-block" href="#">Instagram</a>
+</nav>
+</div>
+<div class="font-body-md text-body-md text-on-primary-fixed-variant border-t border-on-primary-fixed-variant/20 pt-8">
+                © 2024 GU VARSITY. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+</body></html>

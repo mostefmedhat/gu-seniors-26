@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GU Seniors '26 - Order Success &amp; FAQ</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bricolage+Grotesque:opsz,wght@12..96,600&amp;family=Hanken+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-primary": "#b7c4ff",
+                      "surface-container": "#f0edec",
+                      "outline-variant": "#c6c5d1",
+                      "surface-container-highest": "#e5e2e1",
+                      "secondary": "#645e50",
+                      "on-tertiary-fixed-variant": "#0d5300",
+                      "surface-container-high": "#ebe7e7",
+                      "on-primary-container": "#808fcb",
+                      "primary": "#001044",
+                      "tertiary-fixed": "#8cfc6d",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-container": "#eae2d0",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-low": "#f6f3f2",
+                      "inverse-surface": "#313030",
+                      "error-container": "#ffdad6",
+                      "on-primary": "#ffffff",
+                      "on-background": "#1c1b1b",
+                      "tertiary": "#021b00",
+                      "on-surface": "#1c1b1b",
+                      "on-surface-variant": "#45464f",
+                      "on-tertiary-fixed": "#022100",
+                      "on-secondary-container": "#6a6456",
+                      "secondary-fixed-dim": "#cec6b5",
+                      "on-secondary-fixed-variant": "#4b4639",
+                      "on-secondary-fixed": "#1f1b10",
+                      "surface-dim": "#dcd9d9",
+                      "on-secondary": "#ffffff",
+                      "background": "#fcf9f8",
+                      "surface": "#fcf9f8",
+                      "surface-variant": "#e5e2e1",
+                      "primary-container": "#16265c",
+                      "on-tertiary-container": "#39a620",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#fcf9f8",
+                      "on-primary-fixed-variant": "#35437a",
+                      "surface-tint": "#4d5b94",
+                      "on-primary-fixed": "#03164d",
+                      "secondary-fixed": "#eae2d0",
+                      "primary-fixed-dim": "#b7c4ff",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "outline": "#767681",
+                      "primary-fixed": "#dce1ff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "tertiary-fixed-dim": "#71df54",
+                      "tertiary-container": "#053200"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px",
+                      "unit": "4px",
+                      "section-gap": "120px",
+                      "gutter": "24px"
+              },
+              "fontFamily": {
+                      "accent-script": [
+                              "Bricolage Grotesque"
+                      ],
+                      "display-hero-mobile": [
+                              "Anton"
+                      ],
+                      "label-caps": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "display-hero": [
+                              "Anton"
+                      ],
+                      "headline-lg": [
+                              "Anton"
+                      ]
+              },
+              "fontSize": {
+                      "accent-script": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-hero-mobile": [
+                              "48px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-hero": [
+                              "80px",
+                              {
+                                      "lineHeight": "80px",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        /* Film grain overlay */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        
+        /* Hard shadows */
+        .hard-shadow {
+            box-shadow: 4px 4px 0px 0px theme('colors.primary');
+        }
+        .hard-shadow-tertiary {
+            box-shadow: 4px 4px 0px 0px theme('colors.tertiary');
+        }
+        
+        /* Jersey Number Style */
+        .jersey-number {
+            -webkit-text-stroke: 2px theme('colors.primary');
+            text-shadow: 4px 4px 0px theme('colors.primary');
+        }
+
+        /* Patch Border */
+        .patch-border {
+            border: 2px solid theme('colors.surface-container-lowest');
+        }
+        .patch-border-primary {
+            border: 2px solid theme('colors.primary');
+        }
+        
+        /* Stitch Divider */
+        .stitch-divider {
+            border-bottom: 2px dashed theme('colors.primary');
+            opacity: 0.3;
+        }
+
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background relative overflow-x-hidden antialiased">
+<!-- Film Grain Overlay -->
+<div class="film-grain"></div>
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 bg-background dark:bg-background border-b-2 border-primary dark:border-primary-fixed-dim flat no shadows flex justify-between items-center px-margin-desktop py-4 max-w-[1440px] mx-auto md:px-margin-desktop px-margin-mobile">
+<a class="font-headline-lg text-headline-lg uppercase tracking-tighter text-primary dark:text-primary-fixed" href="#">GU Seniors</a>
+<!-- Desktop Nav -->
+<div class="hidden md:flex space-x-8">
+<a class="text-on-surface-variant font-medium font-body-md text-body-md hover:text-primary-fixed-variant transition-colors duration-200" href="#">Shop</a>
+<a class="text-on-surface-variant font-medium font-body-md text-body-md hover:text-primary-fixed-variant transition-colors duration-200" href="#">Legacy</a>
+<a class="text-on-surface-variant font-medium font-body-md text-body-md hover:text-primary-fixed-variant transition-colors duration-200" href="#">Journal</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="hidden md:block bg-primary text-on-primary font-headline-lg text-headline-lg uppercase px-6 py-2 border-2 border-surface-container-lowest hard-shadow hover:translate-y-0.5 transition-transform duration-200 text-sm">Order Now</button>
+<button class="text-on-surface-variant font-medium hover:text-primary-fixed-variant transition-colors duration-200 flex items-center justify-center">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-[100px] md:pt-[120px] pb-section-gap max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Success State Section -->
+<section class="min-h-[716px] flex flex-col items-center justify-center text-center space-y-12 mb-section-gap">
+<!-- Huge Checkmark -->
+<div class="w-32 h-32 md:w-48 md:h-48 rounded-full bg-surface-container-lowest border-4 border-primary hard-shadow flex items-center justify-center">
+<span class="material-symbols-outlined text-[80px] md:text-[120px] text-primary" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="space-y-4">
+<h1 class="font-display-hero-mobile text-display-hero-mobile md:font-display-hero md:text-display-hero text-primary uppercase">Order Received</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg mx-auto">Your spot is secured. Please complete your payment via WhatsApp to finalize the order.</p>
+</div>
+<!-- Jersey Order Number -->
+<div class="bg-primary px-8 py-4 hard-shadow patch-border inline-block transform -rotate-2">
+<p class="font-label-caps text-label-caps text-surface-container-lowest mb-1 opacity-80">Order Number</p>
+<div class="font-display-hero-mobile text-display-hero-mobile text-surface-container-lowest jersey-number uppercase tracking-wider">GU26-0042</div>
+</div>
+<!-- Payment Steps -->
+<div class="w-full max-w-2xl bg-surface-container-lowest p-8 border-2 border-primary hard-shadow text-left space-y-6">
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase border-b-2 border-primary pb-2">Payment Instructions</h2>
+<ol class="space-y-6 font-body-md text-body-md text-on-background">
+<li class="flex items-start gap-4">
+<span class="flex-shrink-0 w-8 h-8 bg-primary text-surface-container-lowest rounded-full flex items-center justify-center font-headline-lg text-lg">1</span>
+<div>
+<strong class="block text-primary">Click the WhatsApp Button</strong>
+<span>This will open a chat with our treasurer.</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="flex-shrink-0 w-8 h-8 bg-primary text-surface-container-lowest rounded-full flex items-center justify-center font-headline-lg text-lg">2</span>
+<div>
+<strong class="block text-primary">Send Your Order Number</strong>
+<span>The message will be pre-filled with "GU26-0042".</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="flex-shrink-0 w-8 h-8 bg-primary text-surface-container-lowest rounded-full flex items-center justify-center font-headline-lg text-lg">3</span>
+<div>
+<strong class="block text-primary">Transfer Funds</strong>
+<span>You will receive the bank details in the chat to complete the transfer.</span>
+</div>
+</li>
+</ol>
+<a class="block w-full text-center bg-tertiary-fixed text-tertiary font-headline-lg text-headline-lg uppercase py-4 border-2 border-tertiary hard-shadow-tertiary hover:translate-y-1 hover:shadow-none transition-all duration-200" href="#">
+                    Pay via WhatsApp
+                </a>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="bg-surface-container-lowest p-margin-mobile md:p-margin-desktop border-2 border-primary hard-shadow mb-section-gap">
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/3">
+<h2 class="font-display-hero-mobile text-display-hero-mobile md:font-display-hero md:text-display-hero text-primary uppercase leading-none">Questions</h2>
+<p class="font-accent-script text-accent-script text-secondary mt-4">Everything you need to know.</p>
+</div>
+<div class="md:w-2/3 space-y-2">
+<!-- Accordion Item 1 -->
+<div class="border-b-2 border-primary">
+<button class="w-full text-left py-6 flex justify-between items-center group focus:outline-none" onclick="toggleAccordion('faq1')">
+<span class="font-headline-lg text-[24px] uppercase text-primary group-hover:text-primary-fixed-variant transition-colors">When does order close?</span>
+<span class="material-symbols-outlined text-primary transform transition-transform duration-300" id="icon-faq1">add</span>
+</button>
+<div class="hidden pb-6 font-body-md text-body-md text-on-surface-variant pr-8" id="content-faq1">
+                            Orders for the Class of '26 collection will close strictly on November 15th at 11:59 PM EST. No exceptions will be made to ensure timely production.
+                        </div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="border-b-2 border-primary">
+<button class="w-full text-left py-6 flex justify-between items-center group focus:outline-none" onclick="toggleAccordion('faq2')">
+<span class="font-headline-lg text-[24px] uppercase text-primary group-hover:text-primary-fixed-variant transition-colors">Delivery dates</span>
+<span class="material-symbols-outlined text-primary transform transition-transform duration-300" id="icon-faq2">add</span>
+</button>
+<div class="hidden pb-6 font-body-md text-body-md text-on-surface-variant pr-8" id="content-faq2">
+                            Production takes approximately 4-6 weeks after the order window closes. We expect to begin on-campus distribution by mid-January.
+                        </div>
+</div>
+<!-- Accordion Item 3 -->
+<div class="border-b-2 border-primary">
+<button class="w-full text-left py-6 flex justify-between items-center group focus:outline-none" onclick="toggleAccordion('faq3')">
+<span class="font-headline-lg text-[24px] uppercase text-primary group-hover:text-primary-fixed-variant transition-colors">Changes to order</span>
+<span class="material-symbols-outlined text-primary transform transition-transform duration-300" id="icon-faq3">add</span>
+</button>
+<div class="hidden pb-6 font-body-md text-body-md text-on-surface-variant pr-8" id="content-faq3">
+                            You can change sizes or cancel your order up until the closing date (Nov 15). Once production begins, all sales are final.
+                        </div>
+</div>
+<!-- Accordion Item 4 -->
+<div class="border-b-2 border-primary">
+<button class="w-full text-left py-6 flex justify-between items-center group focus:outline-none" onclick="toggleAccordion('faq4')">
+<span class="font-headline-lg text-[24px] uppercase text-primary group-hover:text-primary-fixed-variant transition-colors">Payment Methods</span>
+<span class="material-symbols-outlined text-primary transform transition-transform duration-300" id="icon-faq4">add</span>
+</button>
+<div class="hidden pb-6 font-body-md text-body-md text-on-surface-variant pr-8" id="content-faq4">
+                            We currently only accept bank transfers via the WhatsApp confirmation process to keep costs down and avoid processing fees.
+                        </div>
+</div>
+<!-- Accordion Item 5 -->
+<div class="border-b-2 border-primary">
+<button class="w-full text-left py-6 flex justify-between items-center group focus:outline-none" onclick="toggleAccordion('faq5')">
+<span class="font-headline-lg text-[24px] uppercase text-primary group-hover:text-primary-fixed-variant transition-colors">Fit &amp; Sizing</span>
+<span class="material-symbols-outlined text-primary transform transition-transform duration-300" id="icon-faq5">add</span>
+</button>
+<div class="hidden pb-6 font-body-md text-body-md text-on-surface-variant pr-8" id="content-faq5">
+                            Our garments feature a custom, slightly oversized drop-shoulder fit. We recommend ordering your true size for the intended look, or sizing down for a standard fit.
+                        </div>
+</div>
+<!-- Accordion Item 6 -->
+<div class="border-b-2 border-primary">
+<button class="w-full text-left py-6 flex justify-between items-center group focus:outline-none" onclick="toggleAccordion('faq6')">
+<span class="font-headline-lg text-[24px] uppercase text-primary group-hover:text-primary-fixed-variant transition-colors">Can non-seniors order?</span>
+<span class="material-symbols-outlined text-primary transform transition-transform duration-300" id="icon-faq6">add</span>
+</button>
+<div class="hidden pb-6 font-body-md text-body-md text-on-surface-variant pr-8" id="content-faq6">
+                            This specific collection is exclusively reserved for the Class of 2026. General university apparel is available through the official campus store.
+                        </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container w-full mt-section-gap border-t-2 border-outline-variant flat no shadows flex flex-col gap-12 px-margin-desktop py-24 w-full">
+<!-- Enormous Wordmark -->
+<div class="w-full flex justify-center items-center overflow-hidden py-12">
+<h2 class="font-display-hero text-[10vw] leading-none uppercase text-transparent" style="-webkit-text-stroke: 2px theme('colors.surface-container-lowest');">
+                GU SENIORS '26
+            </h2>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-12 border-t-2 border-surface-container-lowest/20 pt-12">
+<div class="space-y-4 max-w-sm">
+<div class="font-headline-lg text-headline-lg text-on-primary dark:text-on-primary-container uppercase">GU Seniors</div>
+<p class="font-body-md text-body-md text-on-primary/80">Made by the Class of 2026.<br/>Not an official university store.</p>
+<div class="flex gap-4 pt-4">
+<a class="w-12 h-12 rounded-full border-2 border-surface-container-lowest flex items-center justify-center hover:bg-surface-container-lowest hover:text-primary transition-colors" href="#">
+                        IG
+                    </a>
+<a class="w-12 h-12 rounded-full border-2 border-surface-container-lowest flex items-center justify-center hover:bg-surface-container-lowest hover:text-primary transition-colors" href="#">
+                        WA
+                    </a>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-4">
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors" href="#">Contact</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors" href="#">Shipping</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors" href="#">Returns</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors" href="#">Privacy</a>
+<a class="font-label-caps text-label-caps text-on-primary-fixed-variant hover:text-tertiary-fixed transition-colors" href="#">Instagram</a>
+</div>
+<div class="w-full md:w-auto font-label-caps text-label-caps text-on-primary/60 text-center md:text-right mt-8 md:mt-0">
+                © 2024 GU VARSITY. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+<script>
+        function toggleAccordion(id) {
+            const content = document.getElementById(`content-${id}`);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(45deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    </script>
+</body></html>
