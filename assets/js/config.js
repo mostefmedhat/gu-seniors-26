@@ -11,7 +11,7 @@ window.GU_CONFIG = {
   // -- REQUIRED ------------------------------------------------------------
 
   /** Apps Script web app URL. See backend/SETUP.md step 4. Ends in /exec */
-  ORDERS_ENDPOINT: '',
+  ORDERS_ENDPOINT: 'https://script.google.com/macros/s/AKfycbx22qT03_KS3pl-TArb27E7RwanwOa_XzExuCv1InrYJPSNXVMAJ7stIcNDbr5oGus3/exec',
 
   /**
    * WhatsApp number that receives payment screenshots.
