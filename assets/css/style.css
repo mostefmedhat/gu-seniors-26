@@ -686,20 +686,21 @@ button { font: inherit; cursor: pointer; }
   border-radius: 12px;
   box-shadow: 4px 4px 0 var(--forest);
   overflow: hidden;
-  aspect-ratio: 1 / 1;
-  display: grid;
-  place-items: center;
   padding: 18px;
 }
 
-/* `contain`, not `cover`: the tote is portrait (1000x1250) and cover was
-   slicing off its handles and the bottom of the print. Contain shows the whole
-   product — it just sits a little smaller inside the square. */
+/* The square lives on the IMAGE, not the wrapper.
+   Putting aspect-ratio on the parent and sizing the image with height:100% (or
+   max-height:100%) does not work: a percentage height cannot resolve against a
+   parent whose own height comes from aspect-ratio, so the image fell back to
+   its natural height, overflowed the square and was clipped by overflow:hidden
+   — which is exactly how the tote lost its handles.
+   Giving the img its own aspect-ratio makes its height definite, and
+   object-fit:contain then letterboxes the portrait tote inside it. */
 .piece__img img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
 }
 
