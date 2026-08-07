@@ -18,7 +18,36 @@ window.GU_CONFIG = {
    * International format, NO plus sign and NO leading zero.
    * Egyptian 01012345678  ->  '201012345678'
    */
-  WHATSAPP_NUMBER: '201066828885',
+  WHATSAPP_NUMBER: '201145051525',
+
+  /**
+   * Where buyers actually send the money.
+   *
+   * ⚠️ While PLACEHOLDER is true the site does NOT print these digits. It tells
+   * buyers the details will come on WhatsApp instead. That is deliberate — a
+   * plausible-looking but wrong number on a live page means someone transfers
+   * real money to a stranger, and you will never get it back.
+   *
+   * Put the real numbers in, set PLACEHOLDER to false, and they appear on the
+   * success screen and in the FAQ automatically.
+   */
+  PAYMENT: {
+    PLACEHOLDER: false,
+
+    /** Same mobile number takes both InstaPay and Vodafone Cash transfers. */
+    instapay: '01023211896',
+    vodafoneCash: '01023211896',
+
+    /** InstaPay payment address — easier to get right than typing digits. */
+    instapayAddress: 'gu.seniors@instapay',
+
+    /**
+     * InstaPay QR. Save the QR picture to this path.
+     * If the file is missing the QR block hides itself rather than showing a
+     * broken image, so the number and address still work on their own.
+     */
+    qr: 'assets/images/qr-pay.png'
+  },
 
 
   // -- PRODUCTS & PRICING --------------------------------------------------
@@ -88,7 +117,7 @@ window.GU_CONFIG = {
   // -- OPTIONAL ------------------------------------------------------------
 
   /** Instagram handle without the @ */
-  INSTAGRAM: '',
+  INSTAGRAM: 'med_seniors_2026',
 
   /** Faculties in the dropdown — also printed on the tote bag. */
   FACULTIES: [

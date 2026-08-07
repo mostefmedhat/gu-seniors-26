@@ -487,6 +487,33 @@
         <div class="success__num" id="success-number">—</div>
         <button type="button" class="copy-btn" id="copy-btn">Copy</button>
 
+        <!-- Real account numbers, shown only once they're configured. -->
+        <div class="paydetails" id="paydetails" hidden>
+          <p class="paydetails__label">Send the money to</p>
+
+          <div class="paydetails__row" id="pay-row-instapay">
+            <span>InstaPay</span>
+            <strong id="pay-num-instapay">—</strong>
+          </div>
+          <div class="paydetails__row" id="pay-row-address">
+            <span>InstaPay address</span>
+            <strong id="pay-address">—</strong>
+          </div>
+          <div class="paydetails__row" id="pay-row-vf">
+            <span>Vodafone Cash</span>
+            <strong id="pay-num-vf">—</strong>
+          </div>
+
+          <figure class="paydetails__qr" id="pay-qr" hidden>
+            <img id="pay-qr-img" alt="InstaPay QR code for gu.seniors@instapay" width="516" height="552">
+            <figcaption>Scan with InstaPay</figcaption>
+          </figure>
+        </div>
+
+        <p class="paydetails-pending" id="paydetails-pending" hidden>
+          We'll send you the payment details on WhatsApp — tap the button below.
+        </p>
+
         <a class="btn btn--whatsapp" id="wa-link" target="_blank" rel="noopener">
           Send payment proof on WhatsApp
         </a>
@@ -535,7 +562,10 @@
 
       <div class="faq__item">
         <button class="faq__q" aria-expanded="false">How do I pay?<span class="faq__sign">+</span></button>
-        <div class="faq__a"><p>InstaPay or Vodafone Cash — you'll get the account details on WhatsApp after you order. Send the payment screenshot with your order number so we can match it. Cash on campus can be arranged too.</p></div>
+        <div class="faq__a">
+          <p>InstaPay or Vodafone Cash. After you order you'll get an order number — send your payment screenshot <strong>with that number</strong> on WhatsApp so we can match the transfer to your jacket. Cash on campus can be arranged too.</p>
+          <p id="faq-pay-numbers" hidden></p>
+        </div>
       </div>
 
       <div class="faq__item">

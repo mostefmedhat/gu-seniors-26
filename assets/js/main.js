@@ -56,6 +56,66 @@
     $$('[data-surcharge]').forEach(function (el) { el.textContent = CFG.HIJABI_SURCHARGE; });
   }
 
+  /**
+   * Renders the payment destination on the success screen.
+   *
+   * Nothing is printed while PAYMENT.PLACEHOLDER is true — buyers are told the
+   * details are coming on WhatsApp instead. Showing a not-yet-real account
+   * number on a live page risks someone transferring money to a stranger.
+   */
+  function fillPaymentDetails(isCash) {
+    var pay = CFG.PAYMENT || {};
+    var box = $('#paydetails');
+    var pending = $('#paydetails-pending');
+    if (!box) return;
+
+    // Cash orders have nothing to transfer.
+    if (isCash) { box.hidden = true; pending.hidden = true; return; }
+
+    var ready = !pay.PLACEHOLDER && (pay.instapay || pay.vodafoneCash || pay.instapayAddress);
+    box.hidden = !ready;
+    pending.hidden = ready;
+    if (!ready) return;
+
+    setRow('#pay-row-instapay', '#pay-num-instapay', pay.instapay);
+    setRow('#pay-row-address',  '#pay-address',      pay.instapayAddress);
+    setRow('#pay-row-vf',       '#pay-num-vf',       pay.vodafoneCash);
+
+    var qrWrap = $('#pay-qr');
+    var qrImg  = $('#pay-qr-img');
+    if (pay.qr && qrWrap && qrImg) {
+      // Only reveal the QR once it has actually loaded — a missing file must
+      // never leave a broken image next to payment instructions.
+      qrImg.onload  = function () { qrWrap.hidden = false; };
+      qrImg.onerror = function () { qrWrap.hidden = true; console.warn('[GU] QR image missing:', pay.qr); };
+      qrImg.src = pay.qr;
+    }
+  }
+
+  function setRow(rowSel, valSel, value) {
+    var row = $(rowSel);
+    if (!row) return;
+    if (!value) { row.hidden = true; return; }
+    row.hidden = false;
+    $(valSel).textContent = value;
+  }
+
+  /** Also surfaces the numbers in the FAQ, for people who read before ordering. */
+  function fillFaqPayment() {
+    var pay = CFG.PAYMENT || {};
+    var el = $('#faq-pay-numbers');
+    if (!el || pay.PLACEHOLDER) return;
+
+    var bits = [];
+    if (pay.instapayAddress) bits.push('InstaPay <strong>' + pay.instapayAddress + '</strong>');
+    if (pay.instapay)        bits.push('InstaPay / Vodafone Cash <strong>' + pay.instapay + '</strong>');
+    if (!bits.length) return;
+
+    el.hidden = false;
+    el.innerHTML = 'Send to ' + bits.join(' · ') +
+      '. You\'ll also see this, plus a QR code, right after you order.';
+  }
+
   /** Fills any element tagged with a product id, e.g. data-product-price="tshirt". */
   function fillProductPrices() {
     if (!CFG.PRODUCTS) return;
@@ -600,8 +660,11 @@
     panel.classList.add('is-visible');
     $('#success-number').textContent = orderNumber;
 
-    // Trust the server's figure — it is the one the sheet recorded.
-    var total = (typeof serverTotal === 'number') ? serverTotal : orderTotal();
+    // Prefer the server's figure — it's the one the sheet recorded — but only
+    // if it's a real amount. Zero would otherwise render as "Total 0 EGP".
+    var total = (typeof serverTotal === 'number' && serverTotal > 0)
+      ? serverTotal
+      : orderTotal();
     $('#success-total').textContent = total ? EGP(total) : 'the amount';
 
     var isCash = data.paymentMethod === 'Cash';
@@ -610,11 +673,13 @@
     if (data.jacketSize) bits.push('jacket ' + data.jacketSize);
     if (data.tshirtSize) bits.push('t-shirt ' + data.tshirtSize + ' ' + data.tshirtFit.toLowerCase());
 
+    var totalPhrase = total ? ' Total ' + EGP(total) + '.' : '';
+
     var msg = isCash
       ? 'Hi! Order ' + orderNumber + ' — ' + data.fullName + '. ' + bits.join(', ') +
-        '. Total ' + EGP(total) + '. I want to pay CASH, how do we arrange it?'
+        '.' + totalPhrase + ' I want to pay CASH, how do we arrange it?'
       : 'Hi! Order ' + orderNumber + ' — ' + data.fullName + '. ' + bits.join(', ') +
-        '. Total ' + EGP(total) + '. Paying by ' + data.paymentMethod +
+        '.' + totalPhrase + ' Paying by ' + data.paymentMethod +
         '. Sending the payment screenshot now.';
 
     var wa = $('#wa-link');
@@ -625,6 +690,8 @@
       wa.setAttribute('aria-disabled', 'true');
     }
     wa.textContent = isCash ? 'ARRANGE CASH ON WHATSAPP' : 'SEND PAYMENT PROOF ON WHATSAPP';
+
+    fillPaymentDetails(isCash);
 
     $('#step-transfer').hidden   = isCash;
     $('#step-screenshot').hidden = isCash;
@@ -648,6 +715,7 @@
     fillPriceFrom();
     fillSurcharge();
     fillProductPrices();
+    fillFaqPayment();
     fillInstagram();
     fillFaculties();
     buildMarquee();
