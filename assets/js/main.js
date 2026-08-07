@@ -10,9 +10,14 @@
   var $  = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
-  // =========================================================== setup check
-
   var IS_DEV = ['localhost', '127.0.0.1', ''].indexOf(location.hostname) !== -1;
+
+  var EGP = function (n) { return Number(n).toLocaleString('en-EG') + ' EGP'; };
+
+  /** The tier object the visitor currently has selected, or null. */
+  var chosen = null;
+
+  // =========================================================== setup check
 
   /**
    * Warns about unfilled config.
@@ -21,42 +26,35 @@
    * visitor should never be told to go edit config.js. In production the same
    * warning goes to the console instead. The one warning that DOES stay visible
    * in production is the size-chart placeholder notice, because ordering a
-   * non-returnable custom jacket off invented measurements costs real money.
+   * non-returnable custom garment off invented measurements costs real money.
    */
   function checkSetup() {
     var missing = [];
     if (!CFG.ORDERS_ENDPOINT) missing.push('ORDERS_ENDPOINT');
     if (!CFG.WHATSAPP_NUMBER) missing.push('WHATSAPP_NUMBER');
-    if (!CFG.PRICE_EGP)       missing.push('PRICE_EGP');
     if (!CFG.ORDER_DEADLINE)  missing.push('ORDER_DEADLINE');
+    if (!CFG.PRODUCTS || !CFG.PRODUCTS.length) missing.push('PRODUCTS');
     if (CFG.SIZES && CFG.SIZES.PLACEHOLDER) missing.push('SIZES (still placeholder)');
 
     if (!missing.length) return;
     console.warn('[GU] Unconfigured:', missing);
 
     if (!IS_DEV) return;
-
     var banner = $('#setup-banner');
-    banner.textContent = '⚠ SETUP INCOMPLETE (shown on localhost only) — fill these in assets/js/config.js: ' + missing.join(', ');
+    banner.textContent = '⚠ SETUP INCOMPLETE (localhost only) — fill these in assets/js/config.js: ' + missing.join(', ');
     banner.classList.add('is-visible');
   }
 
   // ================================================================ content
 
-  /* Rather than render a bare "—" at visitors, unset values collapse the line
-     they sit in. A missing price should read as "not announced yet", never as
-     a broken page. */
+  function fillPriceFrom() {
+    if (!CFG.PRODUCTS || !CFG.PRODUCTS.length) return;
+    var lowest = Math.min.apply(null, CFG.PRODUCTS.map(function (p) { return p.price; }));
+    $$('[data-price-from]').forEach(function (el) { el.textContent = EGP(lowest); });
+  }
 
-  function fillPrice() {
-    if (CFG.PRICE_EGP) {
-      $$('[data-price]').forEach(function (el) {
-        el.textContent = Number(CFG.PRICE_EGP).toLocaleString('en-EG') + ' EGP';
-      });
-    } else {
-      $$('[data-price]').forEach(function (el) { el.textContent = 'the amount'; });
-      var meta = $('#hero-meta');
-      if (meta) meta.hidden = true;
-    }
+  function fillSurcharge() {
+    $$('[data-surcharge]').forEach(function (el) { el.textContent = CFG.HIJABI_SURCHARGE; });
   }
 
   function fillDeadline() {
@@ -87,11 +85,161 @@
     });
   }
 
-  /** Duplicates the marquee content so the -50% translate loops seamlessly. */
   function buildMarquee() {
     var track = $('#marquee-track');
     if (!track) return;
     track.innerHTML += track.innerHTML;
+  }
+
+  // ======================================================= pricing helpers
+
+  var THUMBS = {
+    jacket: { src: 'assets/images/product-front.jpg',      alt: 'Varsity jacket' },
+    tshirt: { src: 'assets/images/tshirt.jpg',             alt: 'Cream t-shirt' },
+    tote:   { src: 'assets/images/totebag.jpg',            alt: 'Canvas tote bag' }
+  };
+
+  /**
+   * What a tier would cost bought piece by piece, using only items that
+   * actually have a standalone price. The tote has none — it is bundle-only —
+   * so it is simply left out rather than guessed at.
+   */
+  function alacarteValue(tier) {
+    var a = CFG.ALACARTE || {};
+    return tier.items.reduce(function (sum, item) { return sum + (a[item] || 0); }, 0);
+  }
+
+  function savingFor(tier) {
+    var full = alacarteValue(tier);
+    return full > tier.price ? full - tier.price : 0;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // ========================================================= pricing tiers
+
+  function renderTiers() {
+    var wrap = $('#tiers');
+    if (!wrap || !CFG.PRODUCTS) return;
+
+    wrap.innerHTML = CFG.PRODUCTS.map(function (t) {
+      var saving = savingFor(t);
+      var full   = alacarteValue(t);
+      var hasTote = t.items.indexOf('tote') !== -1;
+
+      var thumbs = t.items.map(function (i) {
+        var th = THUMBS[i];
+        return th ? '<img src="' + th.src + '" alt="' + th.alt + '" width="52" height="52" loading="lazy">' : '';
+      }).join('');
+
+      var perks = (t.perks || []).map(function (p) {
+        return '<li>' + escapeHtml(p) + '</li>';
+      }).join('');
+
+      return '' +
+        '<article class="tier' + (t.recommended ? ' tier--recommended' : '') + '">' +
+          (t.recommended ? '<span class="tier__badge">Best value</span>' : '') +
+          '<div class="tier__thumbs">' + thumbs + '</div>' +
+          '<h3 class="tier__name">' + escapeHtml(t.label) + '</h3>' +
+          '<p class="tier__tagline">' + escapeHtml(t.tagline) + '</p>' +
+          '<div class="tier__price">' + Number(t.price).toLocaleString('en-EG') + '<small>EGP</small></div>' +
+          (saving
+            ? '<div class="tier__was">' + EGP(full) + ' separately</div>' +
+              '<span class="tier__save">Save ' + Number(saving).toLocaleString('en-EG') + ' EGP' +
+              (hasTote ? ' + free tote' : '') + '</span>'
+            : '') +
+          '<ul class="tier__perks">' + perks + '</ul>' +
+          '<a class="btn ' + (t.recommended ? 'btn--turf' : 'btn--navy') + '" href="#order" ' +
+             'data-pick="' + t.id + '">Choose this</a>' +
+        '</article>';
+    }).join('');
+
+    // Clicking a tier's button jumps to the form with that option pre-selected.
+    $$('[data-pick]', wrap).forEach(function (a) {
+      a.addEventListener('click', function () {
+        var input = $('#product-' + a.dataset.pick);
+        if (input) { input.checked = true; onProductChange(); }
+      });
+    });
+  }
+
+  // ======================================================== product picker
+
+  function renderProductPicker() {
+    var wrap = $('#product-picker');
+    if (!wrap || !CFG.PRODUCTS) return;
+
+    wrap.innerHTML = CFG.PRODUCTS.map(function (t) {
+      return '' +
+        '<input type="radio" id="product-' + t.id + '" name="product" value="' + t.id + '">' +
+        '<label for="product-' + t.id + '">' +
+          '<span class="pp__main">' +
+            '<span class="pp__name">' + escapeHtml(t.label) +
+              (t.recommended ? '<span class="pp__flag">Best value</span>' : '') +
+            '</span>' +
+            '<span class="pp__sub">' + escapeHtml(t.tagline) + '</span>' +
+          '</span>' +
+          '<span class="pp__price">' + Number(t.price).toLocaleString('en-EG') + '</span>' +
+        '</label>';
+    }).join('');
+
+    $$('input[name="product"]', wrap).forEach(function (i) {
+      i.addEventListener('change', onProductChange);
+    });
+  }
+
+  /** Shows only the blocks the chosen option needs, then re-totals. */
+  function onProductChange() {
+    var sel = $('input[name="product"]:checked');
+    chosen = sel ? CFG.PRODUCTS.filter(function (p) { return p.id === sel.value; })[0] : null;
+
+    var hasJacket = !!chosen && chosen.items.indexOf('jacket') !== -1;
+    var hasTshirt = !!chosen && chosen.items.indexOf('tshirt') !== -1;
+
+    $('#jacket-block').hidden = !hasJacket;
+    $('#tshirt-block').hidden = !hasTshirt;
+    $('#product-error').style.display = 'none';
+
+    updateTotal();
+  }
+
+  function currentFit() {
+    var f = $('input[name="tshirtFit"]:checked');
+    return f ? f.value : 'Regular';
+  }
+
+  /** Single source of truth for what an order costs, mirrored server-side. */
+  function orderTotal() {
+    if (!chosen) return null;
+    var total = chosen.price;
+    var hasTshirt = chosen.items.indexOf('tshirt') !== -1;
+    if (hasTshirt && currentFit() === 'Full sleeve') total += (CFG.HIJABI_SURCHARGE || 0);
+    return total;
+  }
+
+  function updateTotal() {
+    var valueEl = $('#total-value');
+    var breakEl = $('#total-breakdown');
+    if (!valueEl) return;
+
+    var total = orderTotal();
+    if (total === null) {
+      valueEl.textContent = '—';
+      breakEl.textContent = 'Pick an option above.';
+      return;
+    }
+
+    valueEl.textContent = EGP(total);
+
+    var parts = [chosen.label + ' ' + Number(chosen.price).toLocaleString('en-EG')];
+    if (chosen.items.indexOf('tshirt') !== -1 && currentFit() === 'Full sleeve') {
+      parts.push('full-sleeve fit +' + CFG.HIJABI_SURCHARGE);
+    }
+    breakEl.textContent = parts.join('  ·  ');
   }
 
   // ============================================================= size table
@@ -114,8 +262,7 @@
     $$('[data-unit-label]').forEach(function (el) { el.textContent = '(' + unit + ')'; });
 
     if (CFG.SIZES.PLACEHOLDER) {
-      var wrap = $('#size-table-wrap');
-      wrap.classList.add('is-placeholder');
+      $('#size-table-wrap').classList.add('is-placeholder');
       $('#size-placeholder-note').hidden = false;
     }
   }
@@ -153,9 +300,7 @@
         btn.setAttribute('aria-selected', 'true');
 
         var is3d = btn.dataset.view === '3d';
-
-        // Never show the 3D chip as active if the model never loaded.
-        if (is3d && canvas.style.display === 'none') return;
+        if (is3d && canvas.style.display === 'none') return;  // model never loaded
 
         canvas.hidden = !is3d;
         still.hidden  = is3d;
@@ -193,8 +338,7 @@
     if (!nameIn || !outNm) return;
 
     function sync() {
-      var v = nameIn.value.trim().toUpperCase();
-      outNm.textContent = v || 'YOUR NAME';
+      outNm.textContent = nameIn.value.trim().toUpperCase() || 'YOUR NAME';
       counter.textContent = nameIn.value.length + '/12';
       if (numIn && outNum) outNum.textContent = numIn.value.trim() || CFG.DEFAULT_NUMBER || '26';
     }
@@ -204,7 +348,6 @@
     sync();
   }
 
-  /** Hides the number field entirely when the back number isn't customisable. */
   function applyNumberPolicy() {
     if (CFG.NUMBER_IS_CUSTOM !== false) return;
     var f = $('#field-number');
@@ -216,7 +359,10 @@
   var ERRORS = {
     BAD_NAME:            'Enter your full name.',
     BAD_PHONE:           'Use a valid Egyptian mobile, e.g. 01012345678.',
-    BAD_SIZE:            'Pick a size.',
+    BAD_PRODUCT:         'Pick what you want to order.',
+    BAD_JACKET_SIZE:     'Pick a jacket size.',
+    BAD_TSHIRT_SIZE:     'Pick a t-shirt size.',
+    BAD_FIT:             'Pick a t-shirt fit.',
     BAD_PAYMENT:         'Pick a payment method.',
     BAD_NAME_ON_BACK:    'Enter the name for the back, 1–12 characters.',
     BAD_NUMBER_ON_BACK:  'Enter 1–2 digits.',
@@ -227,18 +373,27 @@
 
   function clearErrors(form) {
     $$('.field', form).forEach(function (f) { f.classList.remove('has-error'); });
+    $('#product-error').style.display = 'none';
     $('#form-status').textContent = '';
   }
 
   function showError(code) {
-    var msg = ERRORS[code] || ERRORS.SERVER_ERROR;
-    $('#form-status').textContent = msg;
+    $('#form-status').textContent = ERRORS[code] || ERRORS.SERVER_ERROR;
+
+    if (code === 'BAD_PRODUCT') {
+      var pe = $('#product-error');
+      pe.style.display = 'block';
+      pe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
 
     var map = {
       BAD_NAME: 'field-fullName',
       BAD_PHONE: 'field-whatsapp',
       BAD_NAME_ON_BACK: 'field-nameOnBack',
-      BAD_NUMBER_ON_BACK: 'field-number'
+      BAD_NUMBER_ON_BACK: 'field-number',
+      BAD_JACKET_SIZE: 'field-jacketSize',
+      BAD_TSHIRT_SIZE: 'field-tshirtSize'
     };
     var f = map[code] && $('#' + map[code]);
     if (f) {
@@ -250,44 +405,68 @@
   }
 
   /** Mirrors the server's rules so users get feedback without a round trip. */
-  function validateLocal(data) {
-    if (data.fullName.length < 2) return 'BAD_NAME';
-    if (!/^01[0125][0-9]{8}$/.test(data.whatsapp.replace(/[^0-9]/g, '').replace(/^20/, '0')))
+  function validateLocal(d) {
+    if (d.fullName.length < 2) return 'BAD_NAME';
+    if (!/^01[0125][0-9]{8}$/.test(d.whatsapp.replace(/[^0-9]/g, '').replace(/^20/, '0')))
       return 'BAD_PHONE';
-    if (!data.size) return 'BAD_SIZE';
-    if (!data.paymentMethod) return 'BAD_PAYMENT';
-    if (!data.nameOnBack || data.nameOnBack.length > 12) return 'BAD_NAME_ON_BACK';
-    if (!/^[0-9]{1,2}$/.test(data.numberOnBack)) return 'BAD_NUMBER_ON_BACK';
+    if (!chosen) return 'BAD_PRODUCT';
+
+    if (chosen.items.indexOf('jacket') !== -1) {
+      if (!d.nameOnBack || d.nameOnBack.length > 12) return 'BAD_NAME_ON_BACK';
+      if (!/^[0-9]{1,2}$/.test(d.numberOnBack))      return 'BAD_NUMBER_ON_BACK';
+      if (!d.jacketSize)                              return 'BAD_JACKET_SIZE';
+    }
+    if (chosen.items.indexOf('tshirt') !== -1) {
+      if (!d.tshirtSize) return 'BAD_TSHIRT_SIZE';
+      if (!d.tshirtFit)  return 'BAD_FIT';
+    }
+    if (!d.paymentMethod) return 'BAD_PAYMENT';
     return null;
   }
 
   function collect(form) {
     var fd = new FormData(form);
+    var hasJacket = chosen && chosen.items.indexOf('jacket') !== -1;
+    var hasTshirt = chosen && chosen.items.indexOf('tshirt') !== -1;
+
     return {
-      fullName:      (fd.get('fullName')      || '').trim(),
-      whatsapp:      (fd.get('whatsapp')      || '').trim(),
-      faculty:       (fd.get('faculty')       || '').trim(),
-      nameOnBack:    (fd.get('nameOnBack')    || '').trim(),
-      numberOnBack:  CFG.NUMBER_IS_CUSTOM === false
-                       ? (CFG.DEFAULT_NUMBER || '26')
-                       : (fd.get('numberOnBack') || '').trim(),
-      size:          fd.get('size')          || '',
+      fullName:      (fd.get('fullName') || '').trim(),
+      whatsapp:      (fd.get('whatsapp') || '').trim(),
+      faculty:       (fd.get('faculty')  || '').trim(),
+
+      product:       chosen ? chosen.id : '',
+      productLabel:  chosen ? chosen.label : '',
+
+      nameOnBack:    hasJacket ? (fd.get('nameOnBack') || '').trim() : '',
+      numberOnBack:  hasJacket
+                       ? (CFG.NUMBER_IS_CUSTOM === false
+                            ? (CFG.DEFAULT_NUMBER || '26')
+                            : (fd.get('numberOnBack') || '').trim())
+                       : '',
+      jacketSize:    hasJacket ? (fd.get('jacketSize') || '') : '',
+
+      tshirtSize:    hasTshirt ? (fd.get('tshirtSize') || '') : '',
+      tshirtFit:     hasTshirt ? (fd.get('tshirtFit')  || '') : '',
+
       paymentMethod: fd.get('paymentMethod') || '',
-      notes:         (fd.get('notes')        || '').trim(),
-      website:       (fd.get('website')      || '')   // honeypot
+      notes:         (fd.get('notes') || '').trim(),
+      website:       (fd.get('website') || '')   // honeypot
     };
   }
 
   function wireForm() {
     var form = $('#order-form');
     if (!form) return;
-
     var btn = $('#submit-btn');
 
     if (!CFG.ORDERS_ENDPOINT) {
       btn.disabled = true;
       btn.textContent = 'BACKEND NOT CONNECTED';
     }
+
+    $$('input[name="tshirtFit"]').forEach(function (i) {
+      i.addEventListener('change', updateTotal);
+    });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -310,7 +489,7 @@
         .then(function (r) { return r.json(); })
         .then(function (res) {
           if (res && res.ok) {
-            showSuccess(res.orderNumber, data);
+            showSuccess(res.orderNumber, data, res.total);
           } else {
             showError(res && res.error);
             btn.disabled = false;
@@ -328,19 +507,27 @@
 
   // =============================================================== success
 
-  function showSuccess(orderNumber, data) {
+  function showSuccess(orderNumber, data, serverTotal) {
     $('#order-form').classList.add('is-hidden');
     var panel = $('#success');
     panel.classList.add('is-visible');
     $('#success-number').textContent = orderNumber;
 
+    // Trust the server's figure — it is the one the sheet recorded.
+    var total = (typeof serverTotal === 'number') ? serverTotal : orderTotal();
+    $('#success-total').textContent = total ? EGP(total) : 'the amount';
+
     var isCash = data.paymentMethod === 'Cash';
 
+    var bits = [data.productLabel];
+    if (data.jacketSize) bits.push('jacket ' + data.jacketSize);
+    if (data.tshirtSize) bits.push('t-shirt ' + data.tshirtSize + ' ' + data.tshirtFit.toLowerCase());
+
     var msg = isCash
-      ? 'Hi! Order ' + orderNumber + ' — ' + data.fullName +
-        ', size ' + data.size + '. I want to pay CASH, how do we arrange it?'
-      : 'Hi! Order ' + orderNumber + ' — ' + data.fullName +
-        ', size ' + data.size + '. Paying by ' + data.paymentMethod +
+      ? 'Hi! Order ' + orderNumber + ' — ' + data.fullName + '. ' + bits.join(', ') +
+        '. Total ' + EGP(total) + '. I want to pay CASH, how do we arrange it?'
+      : 'Hi! Order ' + orderNumber + ' — ' + data.fullName + '. ' + bits.join(', ') +
+        '. Total ' + EGP(total) + '. Paying by ' + data.paymentMethod +
         '. Sending the payment screenshot now.';
 
     var wa = $('#wa-link');
@@ -352,10 +539,9 @@
     }
     wa.textContent = isCash ? 'ARRANGE CASH ON WHATSAPP' : 'SEND PAYMENT PROOF ON WHATSAPP';
 
-    // Cash orders have nothing to screenshot.
-    $('#step-transfer').hidden = isCash;
+    $('#step-transfer').hidden   = isCash;
     $('#step-screenshot').hidden = isCash;
-    $('#step-cash').hidden = !isCash;
+    $('#step-cash').hidden       = !isCash;
 
     panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
@@ -372,11 +558,14 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     checkSetup();
-    fillPrice();
+    fillPriceFrom();
+    fillSurcharge();
     fillDeadline();
     fillInstagram();
     fillFaculties();
     buildMarquee();
+    renderTiers();
+    renderProductPicker();
     renderSizes();
     wireUnitToggle();
     wireViewSwitch();
@@ -384,6 +573,7 @@
     applyNumberPolicy();
     wirePreview();
     wireForm();
+    onProductChange();          // collapse both blocks until something is picked
     $('#year').textContent = new Date().getFullYear();
   });
 })();

@@ -29,6 +29,7 @@
       <a href="#jacket">The Jacket</a>
       <a href="#showcase">In 3D</a>
       <a href="#sizes">Sizes</a>
+      <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn--turf" href="#order">Order Now</a>
@@ -59,7 +60,7 @@
     </div>
 
     <p class="hero__meta" id="hero-meta">
-      <strong data-price>—</strong>
+      Bundles from <strong data-price-from>—</strong>
       <span data-deadline-phrase>&nbsp;·&nbsp; Orders close <strong data-deadline>—</strong></span>
     </p>
   </div>
@@ -82,20 +83,20 @@
 
     <div class="lookbook">
       <figure class="lookbook__item lookbook__item--a">
-        <img src="assets/images/detail-back.jpg" loading="lazy"
-             alt="Close-up of the embroidered back: GALALA arched over a large 26 with Senior in script." width="854" height="1280">
+        <img src="assets/images/lookbook-back.jpg" loading="lazy"
+             alt="Close-up of the embroidered back: GALALA arched over a large 26 with Senior in script." width="1300" height="1947">
         <figcaption class="lookbook__cap">01 / Back — chain-stitch name + '26</figcaption>
       </figure>
 
       <figure class="lookbook__item lookbook__item--b">
-        <img src="assets/images/detail-chest.jpg" loading="lazy"
-             alt="Chest detail showing the black felt letter patch and the sleeve crest." width="854" height="1280">
+        <img src="assets/images/lookbook-chest.jpg" loading="lazy"
+             alt="Chest detail showing the black felt letter patch and the snap buttons." width="1300" height="1947">
         <figcaption class="lookbook__cap">02 / Chest — felt letter patch</figcaption>
       </figure>
 
       <figure class="lookbook__item lookbook__item--c">
-        <img src="assets/images/detail-crest.jpg" loading="lazy"
-             alt="Embroidered circular class crest on the sleeve reading Class of 2026, Galala Seniors." width="854" height="1280">
+        <img src="assets/images/lookbook-crest.jpg" loading="lazy"
+             alt="Embroidered circular class crest on the sleeve reading Class of 2026, Galala Seniors." width="1300" height="1947">
         <figcaption class="lookbook__cap">03 / Sleeve — class of 2026 crest</figcaption>
       </figure>
     </div>
@@ -235,6 +236,26 @@
   </div>
 </section>
 
+<!-- ========================================================== pricing -->
+<section class="section section--cream" id="pricing">
+  <div class="wrap">
+    <p class="section__label label-caps">Pricing</p>
+    <h2 class="display section__title">Pick your bundle.</h2>
+
+    <!-- rendered from GU_CONFIG.PRODUCTS so prices live in one place only -->
+    <div class="tiers" id="tiers"></div>
+
+    <div class="pricing-note">
+      <strong>Hijabi fit:</strong> the t-shirt comes in a long-sleeve cut too.
+      It uses more fabric, so it's <strong>+<span data-surcharge>75</span> EGP</strong>
+      on any option that includes a t-shirt. Pick it in the order form.
+      <br><br>
+      The tote bag is printed with <strong>your faculty</strong> and only comes
+      as part of the Full Bundle.
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================ order -->
 <section class="section section--navy grain" id="order">
   <div class="wrap">
@@ -268,46 +289,101 @@
         </div>
 
         <hr class="form__divider">
-        <h3 class="form__legend">Customisation</h3>
+        <h3 class="form__legend">What are you getting?</h3>
 
-        <div class="customize">
-          <div>
-            <div class="field" id="field-nameOnBack">
-              <label for="nameOnBack">Name on back</label>
-              <span class="field__counter" id="name-counter">0/12</span>
-              <input id="nameOnBack" name="nameOnBack" type="text" maxlength="12" required>
-              <p class="field__error">1–12 characters.</p>
-            </div>
+        <!-- rendered from GU_CONFIG.PRODUCTS -->
+        <div class="product-picker" id="product-picker" role="radiogroup" aria-label="What you're ordering"></div>
+        <p class="field__error" id="product-error">Pick what you want to order.</p>
 
-            <div class="field" id="field-number">
-              <label for="numberOnBack">Number on back</label>
-              <input id="numberOnBack" name="numberOnBack" type="text"
-                     inputmode="numeric" maxlength="2" placeholder="26">
-              <p class="field__error">1–2 digits.</p>
-            </div>
+        <!-- Jacket-only fields. Hidden automatically when the chosen option
+             has no jacket in it. -->
+        <div id="jacket-block">
+          <hr class="form__divider">
+          <h3 class="form__legend">Your jacket</h3>
 
-            <div class="field">
-              <label id="size-label">Size</label>
-              <div class="size-picker" role="radiogroup" aria-labelledby="size-label">
-                <input type="radio" id="size-s"   name="size" value="S"><label for="size-s">S</label>
-                <input type="radio" id="size-m"   name="size" value="M"><label for="size-m">M</label>
-                <input type="radio" id="size-l"   name="size" value="L"><label for="size-l">L</label>
-                <input type="radio" id="size-xl"  name="size" value="XL"><label for="size-xl">XL</label>
-                <input type="radio" id="size-xxl" name="size" value="XXL"><label for="size-xxl">XXL</label>
+          <div class="customize">
+            <div>
+              <div class="field" id="field-nameOnBack">
+                <label for="nameOnBack">Name on back</label>
+                <span class="field__counter" id="name-counter">0/12</span>
+                <input id="nameOnBack" name="nameOnBack" type="text" maxlength="12">
+                <p class="field__error">1–12 characters.</p>
+              </div>
+
+              <div class="field" id="field-number">
+                <label for="numberOnBack">Number on back</label>
+                <input id="numberOnBack" name="numberOnBack" type="text"
+                       inputmode="numeric" maxlength="2" placeholder="26">
+                <p class="field__error">1–2 digits.</p>
+              </div>
+
+              <div class="field" id="field-jacketSize">
+                <label id="jacket-size-label">Jacket size</label>
+                <div class="size-picker" role="radiogroup" aria-labelledby="jacket-size-label">
+                  <input type="radio" id="js-s"   name="jacketSize" value="S"><label for="js-s">S</label>
+                  <input type="radio" id="js-m"   name="jacketSize" value="M"><label for="js-m">M</label>
+                  <input type="radio" id="js-l"   name="jacketSize" value="L"><label for="js-l">L</label>
+                  <input type="radio" id="js-xl"  name="jacketSize" value="XL"><label for="js-xl">XL</label>
+                  <input type="radio" id="js-xxl" name="jacketSize" value="XXL"><label for="js-xxl">XXL</label>
+                </div>
+                <p class="field__error">Pick a jacket size.</p>
               </div>
             </div>
+
+            <!-- live preview of the back print -->
+            <div class="preview" aria-live="polite">
+              <div class="preview__arc">GALALA</div>
+              <div class="preview__numwrap">
+                <div class="preview__num" id="preview-num">26</div>
+                <div class="preview__script">Senior</div>
+              </div>
+              <div class="preview__name" id="preview-name">YOUR NAME</div>
+              <div class="preview__tag">Live preview</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- T-shirt-only fields. -->
+        <div id="tshirt-block">
+          <hr class="form__divider">
+          <h3 class="form__legend">Your t-shirt</h3>
+
+          <div class="field" id="field-tshirtFit">
+            <label id="fit-label">Fit</label>
+            <div class="pay-picker pay-picker--two" role="radiogroup" aria-labelledby="fit-label">
+              <input type="radio" id="fit-regular" name="tshirtFit" value="Regular" checked>
+              <label for="fit-regular">
+                <div class="pay__icon">👕</div>
+                <span class="pay__name">Regular</span>
+                <span class="pay__hint">Short sleeve</span>
+              </label>
+
+              <input type="radio" id="fit-full" name="tshirtFit" value="Full sleeve">
+              <label for="fit-full">
+                <div class="pay__icon">🧕</div>
+                <span class="pay__name">Full sleeve</span>
+                <span class="pay__hint">Hijabi fit · +<span data-surcharge>75</span> EGP</span>
+              </label>
+            </div>
           </div>
 
-          <!-- live preview of the back print -->
-          <div class="preview" aria-live="polite">
-            <div class="preview__arc">GALALA</div>
-            <div class="preview__numwrap">
-              <div class="preview__num" id="preview-num">26</div>
-              <div class="preview__script">Senior</div>
+          <div class="field" id="field-tshirtSize">
+            <label id="tshirt-size-label">T-shirt size</label>
+            <div class="size-picker" role="radiogroup" aria-labelledby="tshirt-size-label">
+              <input type="radio" id="ts-s"   name="tshirtSize" value="S"><label for="ts-s">S</label>
+              <input type="radio" id="ts-m"   name="tshirtSize" value="M"><label for="ts-m">M</label>
+              <input type="radio" id="ts-l"   name="tshirtSize" value="L"><label for="ts-l">L</label>
+              <input type="radio" id="ts-xl"  name="tshirtSize" value="XL"><label for="ts-xl">XL</label>
+              <input type="radio" id="ts-xxl" name="tshirtSize" value="XXL"><label for="ts-xxl">XXL</label>
             </div>
-            <div class="preview__name" id="preview-name">YOUR NAME</div>
-            <div class="preview__tag">Live preview</div>
+            <p class="field__error">Pick a t-shirt size.</p>
           </div>
+        </div>
+
+        <div class="total" id="total" aria-live="polite">
+          <span class="total__label">Total</span>
+          <span class="total__value" id="total-value">—</span>
+          <span class="total__breakdown" id="total-breakdown"></span>
         </div>
 
         <hr class="form__divider">
@@ -371,7 +447,7 @@
 
         <ol class="steps">
           <li id="step-transfer">
-            Transfer <strong data-price>—</strong> using the method you picked.
+            Transfer <strong id="success-total">—</strong> using the method you picked.
           </li>
           <li id="step-screenshot">
             Screenshot the confirmation.
