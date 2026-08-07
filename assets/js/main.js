@@ -32,7 +32,6 @@
     var missing = [];
     if (!CFG.ORDERS_ENDPOINT) missing.push('ORDERS_ENDPOINT');
     if (!CFG.WHATSAPP_NUMBER) missing.push('WHATSAPP_NUMBER');
-    if (!CFG.ORDER_DEADLINE)  missing.push('ORDER_DEADLINE');
     if (!CFG.PRODUCTS || !CFG.PRODUCTS.length) missing.push('PRODUCTS');
     if (CFG.SIZES && CFG.SIZES.PLACEHOLDER) missing.push('SIZES (still placeholder)');
 
@@ -57,13 +56,13 @@
     $$('[data-surcharge]').forEach(function (el) { el.textContent = CFG.HIJABI_SURCHARGE; });
   }
 
-  function fillDeadline() {
-    if (CFG.ORDER_DEADLINE) {
-      $$('[data-deadline]').forEach(function (el) { el.textContent = CFG.ORDER_DEADLINE; });
-    } else {
-      $$('[data-deadline-phrase]').forEach(function (el) { el.hidden = true; });
-      $$('[data-deadline]').forEach(function (el) { el.textContent = 'soon'; });
-    }
+  /** Fills any element tagged with a product id, e.g. data-product-price="tshirt". */
+  function fillProductPrices() {
+    if (!CFG.PRODUCTS) return;
+    $$('[data-product-price]').forEach(function (el) {
+      var t = CFG.PRODUCTS.filter(function (p) { return p.id === el.dataset.productPrice; })[0];
+      if (t) el.textContent = EGP(t.price);
+    });
   }
 
   function fillInstagram() {
@@ -245,21 +244,52 @@
   // ============================================================= size table
 
   var unit = 'cm';
+  var garment = 'jacket';
+
+  var GARMENT_FIGURE = {
+    jacket:        { src: 'assets/images/product-front.jpg',      alt: 'The jacket, used as the measurement reference.' },
+    tshirtRegular: { src: 'assets/images/tshirt.jpg',             alt: 'The t-shirt, used as the measurement reference.' },
+    tshirtHijabi:  { src: 'assets/images/tshirt-fullsleeve.jpg',  alt: 'The full-sleeve t-shirt, used as the measurement reference.' }
+  };
+
+  var toIn = function (cm) { return Math.round((cm / 2.54) * 10) / 10; };
 
   function renderSizes() {
+    var head = $('#size-head');
     var body = $('#size-body');
-    if (!body || !CFG.SIZES) return;
+    var chart = CFG.SIZES && CFG.SIZES[garment];
+    if (!head || !body || !chart) return;
 
-    var toIn = function (cm) { return Math.round((cm / 2.54) * 10) / 10; };
+    var u = '<span data-unit-label>(' + unit + ')</span>';
+    head.innerHTML =
+      '<th scope="col">Size</th>' +
+      '<th scope="col">W Width ' + u + '</th>' +
+      '<th scope="col">L Length ' + u + '</th>' +
+      (chart.hasWeight ? '<th scope="col">Body weight (kg)</th>' : '');
 
-    body.innerHTML = CFG.SIZES.rows.map(function (r) {
-      var c = unit === 'cm' ? r.chest  : toIn(r.chest);
+    body.innerHTML = chart.rows.map(function (r) {
+      var w = unit === 'cm' ? r.width  : toIn(r.width);
       var l = unit === 'cm' ? r.length : toIn(r.length);
-      var s = unit === 'cm' ? r.sleeve : toIn(r.sleeve);
-      return '<tr><td>' + r.size + '</td><td>' + c + '</td><td>' + l + '</td><td>' + s + '</td></tr>';
+      return '<tr><td>' + r.size + '</td><td>' + w + '</td><td>' + l + '</td>' +
+             (chart.hasWeight ? '<td>' + (r.weight || '—') + '</td>' : '') + '</tr>';
     }).join('');
 
-    $$('[data-unit-label]').forEach(function (el) { el.textContent = '(' + unit + ')'; });
+    var fig = $('#size-figure');
+    var meta = GARMENT_FIGURE[garment];
+    if (fig && meta) { fig.src = meta.src; fig.alt = meta.alt; }
+
+    // Say plainly which sizes this garment isn't made in, rather than letting
+    // someone hunt for an S that was never an option.
+    var nos = $('#size-nos');
+    var have = chart.rows.map(function (r) { return r.size; });
+    var missing = ['S', 'M', 'L', 'XL', '2XL'].filter(function (s) { return have.indexOf(s) === -1; });
+    if (missing.length) {
+      nos.hidden = false;
+      nos.innerHTML = '<strong>Not made in ' + missing.join(', ') + '.</strong> ' +
+                      chart.label + ' runs ' + have[0] + '–' + have[have.length - 1] + '.';
+    } else {
+      nos.hidden = true;
+    }
 
     if (CFG.SIZES.PLACEHOLDER) {
       $('#size-table-wrap').classList.add('is-placeholder');
@@ -277,6 +307,59 @@
         renderSizes();
       });
     });
+  }
+
+  function wireGarmentTabs() {
+    var bar = $('#garment-tabs');
+    if (!bar) return;
+    $$('button', bar).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        garment = btn.dataset.garment;
+        $$('button', bar).forEach(function (b) {
+          b.setAttribute('aria-selected', String(b.dataset.garment === garment));
+        });
+        renderSizes();
+      });
+    });
+  }
+
+  // ========================================================== size pickers
+
+  /**
+   * Builds the size buttons from the chart for that garment, so the form can
+   * only ever offer sizes that are actually manufactured.
+   * Keeps the current choice selected if it still exists in the new set.
+   */
+  function renderSizePicker(wrapId, inputName, chart) {
+    var wrap = $('#' + wrapId);
+    if (!wrap || !chart) return;
+
+    var previous = (($('input[name="' + inputName + '"]:checked') || {}).value) || '';
+
+    wrap.innerHTML = chart.rows.map(function (r, i) {
+      var id = wrapId + '-' + i;
+      return '<input type="radio" id="' + id + '" name="' + inputName + '" value="' + r.size + '"' +
+             (r.size === previous ? ' checked' : '') + '>' +
+             '<label for="' + id + '">' + r.size + '</label>';
+    }).join('');
+  }
+
+  function renderJacketSizes() {
+    renderSizePicker('jacket-size-picker', 'jacketSize', CFG.SIZES && CFG.SIZES.jacket);
+  }
+
+  /** The regular tee and the full-sleeve cut have different size runs. */
+  function renderTshirtSizes() {
+    var hijabi = currentFit() === 'Full sleeve';
+    var chart  = CFG.SIZES && (hijabi ? CFG.SIZES.tshirtHijabi : CFG.SIZES.tshirtRegular);
+    renderSizePicker('tshirt-size-picker', 'tshirtSize', chart);
+
+    var hint = $('#tshirt-size-hint');
+    if (hint && chart) {
+      hint.textContent = hijabi
+        ? 'The full-sleeve cut has its own chart and does come in S.'
+        : 'The regular tee starts at M.';
+    }
   }
 
   // =========================================================== view switch
@@ -464,8 +547,12 @@
       btn.textContent = 'BACKEND NOT CONNECTED';
     }
 
+    // Switching fit swaps the whole size run, not just the price.
     $$('input[name="tshirtFit"]').forEach(function (i) {
-      i.addEventListener('change', updateTotal);
+      i.addEventListener('change', function () {
+        renderTshirtSizes();
+        updateTotal();
+      });
     });
 
     form.addEventListener('submit', function (e) {
@@ -560,14 +647,17 @@
     checkSetup();
     fillPriceFrom();
     fillSurcharge();
-    fillDeadline();
+    fillProductPrices();
     fillInstagram();
     fillFaculties();
     buildMarquee();
     renderTiers();
     renderProductPicker();
     renderSizes();
+    renderJacketSizes();
+    renderTshirtSizes();
     wireUnitToggle();
+    wireGarmentTabs();
     wireViewSwitch();
     wireFaq();
     applyNumberPolicy();

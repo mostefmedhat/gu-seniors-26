@@ -20,8 +20,6 @@ window.GU_CONFIG = {
    */
   WHATSAPP_NUMBER: '201066828885',
 
-  /** Human-readable order deadline shown across the site. */
-  ORDER_DEADLINE: '',
 
   // -- PRODUCTS & PRICING --------------------------------------------------
 
@@ -106,22 +104,51 @@ window.GU_CONFIG = {
   ],
 
   /**
-   * Size charts, garment measured flat, in centimetres.
+   * Real size charts from the manufacturer. Garment measured flat, in cm.
    *
-   * ⚠️ THESE ARE PLACEHOLDER NUMBERS — invented, not measured.
-   * Get the real ones from the manufacturer and set PLACEHOLDER to false.
-   * While it's true the table renders with an orange dashed outline and a
-   * warning, so nobody orders off fake numbers.
+   * Each garment carries its OWN size list — the jacket and the regular tee
+   * are not made in S, only the hijabi cut is. The order form builds its size
+   * buttons from these arrays, so a size that doesn't exist here can never be
+   * ordered.
+   *
+   * `width` is across the chest laid flat; `length` is shoulder to hem.
    */
   SIZES: {
-    PLACEHOLDER: true,
-    rows: [
-      { size: 'S',   chest: 56, length: 66, sleeve: 58 },
-      { size: 'M',   chest: 59, length: 68, sleeve: 60 },
-      { size: 'L',   chest: 62, length: 70, sleeve: 62 },
-      { size: 'XL',  chest: 65, length: 72, sleeve: 64 },
-      { size: 'XXL', chest: 68, length: 74, sleeve: 66 }
-    ]
+    PLACEHOLDER: false,
+
+    jacket: {
+      label: 'Jacket',
+      rows: [
+        { size: 'M',   width: 61, length: 67 },
+        { size: 'L',   width: 63, length: 67 },
+        { size: 'XL',  width: 65, length: 68 },
+        { size: '2XL', width: 67, length: 68 }
+      ]
+    },
+
+    tshirtRegular: {
+      label: 'T-shirt',
+      rows: [
+        { size: 'M',   width: 54, length: 67 },
+        { size: 'L',   width: 56, length: 67 },
+        { size: 'XL',  width: 58, length: 69 },
+        { size: '2XL', width: 60, length: 69 }
+      ]
+    },
+
+    /* The long-sleeve cut is a different garment with its own grading, and the
+       manufacturer supplies a body-weight guide for it. */
+    tshirtHijabi: {
+      label: 'T-shirt · full sleeve',
+      hasWeight: true,
+      rows: [
+        { size: 'S',   width: 54, length: 68, weight: '35–45' },
+        { size: 'M',   width: 56, length: 71, weight: '45–55' },
+        { size: 'L',   width: 58, length: 73, weight: '55–65' },
+        { size: 'XL',  width: 60, length: 76, weight: '65–80' },
+        { size: '2XL', width: 62, length: 78, weight: '80–100' }
+      ]
+    }
   },
 
   /**

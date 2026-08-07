@@ -61,7 +61,7 @@
 
     <p class="hero__meta" id="hero-meta">
       Bundles from <strong data-price-from>—</strong>
-      <span data-deadline-phrase>&nbsp;·&nbsp; Orders close <strong data-deadline>—</strong></span>
+      &nbsp;·&nbsp; Custom name on the back
     </p>
   </div>
 </section>
@@ -181,6 +181,58 @@
   </div>
 </section>
 
+<!-- ======================================================= collection -->
+<section class="section section--cream" id="collection">
+  <div class="wrap">
+    <p class="section__label label-caps">The rest of the drop</p>
+    <h2 class="display section__title">More than a jacket.</h2>
+
+    <div class="collection">
+      <figure class="piece">
+        <div class="piece__img"><img src="assets/images/tshirt.jpg" loading="lazy"
+             alt="Cream t-shirt with green ribbed collar and cuffs and the Galala calligraphy mark on the chest."
+             width="852" height="848"></div>
+        <figcaption>
+          <h3 class="piece__name">The T-shirt</h3>
+          <p class="piece__desc">
+            Cream cotton with a forest-green ringer collar and cuffs, and the
+            Galala calligraphy mark across the chest.
+          </p>
+          <p class="piece__price"><span data-product-price="tshirt">—</span> on its own</p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <div class="piece__img"><img src="assets/images/tshirt-fullsleeve.jpg" loading="lazy"
+             alt="Cream long-sleeve version of the t-shirt with the Galala calligraphy mark on the chest."
+             width="852" height="848"></div>
+        <figcaption>
+          <h3 class="piece__name">Full sleeve <span class="piece__tag">Hijabi fit</span></h3>
+          <p class="piece__desc">
+            The same tee in a relaxed long-sleeve cut with a higher neckline.
+            More fabric, so it's +<span data-surcharge>75</span> EGP.
+          </p>
+          <p class="piece__price">Its own size chart — see <a href="#sizes">the size guide</a></p>
+        </figcaption>
+      </figure>
+
+      <figure class="piece">
+        <div class="piece__img"><img src="assets/images/totebag.jpg" loading="lazy"
+             alt="Natural canvas tote bag printed with GALALA 26 Senior and the faculty name."
+             width="1000" height="1250"></div>
+        <figcaption>
+          <h3 class="piece__name">The Tote <span class="piece__tag">Bundle only</span></h3>
+          <p class="piece__desc">
+            Heavy natural canvas, printed with the same varsity artwork and
+            <strong>your faculty</strong> across the bottom.
+          </p>
+          <p class="piece__price">Only in the Full Bundle</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================ sizes -->
 <section class="section section--cream" id="sizes">
   <div class="wrap">
@@ -189,16 +241,21 @@
 
     <div class="sizes">
       <div class="sizes__figure">
-        <img src="assets/images/product-front.jpg" loading="lazy"
-             alt="Front view of the jacket, used as the measurement reference." width="1400" height="1400">
+        <img id="size-figure" src="assets/images/product-front.jpg" loading="lazy"
+             alt="The jacket, used as the measurement reference." width="1400" height="1400">
         <p class="size-note">
-          <strong>A</strong> chest, armpit to armpit ·
-          <strong>B</strong> length, shoulder to hem ·
-          <strong>C</strong> sleeve, shoulder to cuff
+          <strong>W</strong> width, across the chest laid flat ·
+          <strong>L</strong> length, shoulder to hem
         </p>
       </div>
 
       <div>
+        <div class="garment-tabs" id="garment-tabs" role="tablist" aria-label="Garment">
+          <button type="button" role="tab" data-garment="jacket" aria-selected="true">Jacket</button>
+          <button type="button" role="tab" data-garment="tshirtRegular" aria-selected="false">T-shirt</button>
+          <button type="button" role="tab" data-garment="tshirtHijabi" aria-selected="false">Full sleeve</button>
+        </div>
+
         <div class="unit-toggle" role="group" aria-label="Units">
           <button type="button" data-unit="cm" aria-pressed="true">cm</button>
           <button type="button" data-unit="in" aria-pressed="false">in</button>
@@ -207,14 +264,7 @@
         <div id="size-table-wrap">
           <table class="size-table">
             <caption class="visually-hidden">Garment measurements by size</caption>
-            <thead>
-              <tr>
-                <th scope="col">Size</th>
-                <th scope="col">A Chest <span data-unit-label>(cm)</span></th>
-                <th scope="col">B Length <span data-unit-label>(cm)</span></th>
-                <th scope="col">C Sleeve <span data-unit-label>(cm)</span></th>
-              </tr>
-            </thead>
+            <thead><tr id="size-head"></tr></thead>
             <tbody id="size-body"></tbody>
           </table>
         </div>
@@ -224,6 +274,8 @@
           Replace them with real measurements in <code>assets/js/config.js</code>
           before sharing this page.
         </p>
+
+        <p class="size-note" id="size-nos" hidden></p>
 
         <div class="size-callout">
           Oversized fit — if you're between sizes, size down.
@@ -262,8 +314,7 @@
     <div class="order">
       <h2 class="display order__title">Claim your jacket.</h2>
       <p class="order__sub">
-        Limited run<span data-deadline-phrase>. Once orders close
-        <strong data-deadline>—</strong></span>, that's it.
+        Limited run. One batch, made to order — once it's placed, that's it.
       </p>
 
       <form id="order-form" class="order__form" novalidate>
@@ -319,13 +370,10 @@
 
               <div class="field" id="field-jacketSize">
                 <label id="jacket-size-label">Jacket size</label>
-                <div class="size-picker" role="radiogroup" aria-labelledby="jacket-size-label">
-                  <input type="radio" id="js-s"   name="jacketSize" value="S"><label for="js-s">S</label>
-                  <input type="radio" id="js-m"   name="jacketSize" value="M"><label for="js-m">M</label>
-                  <input type="radio" id="js-l"   name="jacketSize" value="L"><label for="js-l">L</label>
-                  <input type="radio" id="js-xl"  name="jacketSize" value="XL"><label for="js-xl">XL</label>
-                  <input type="radio" id="js-xxl" name="jacketSize" value="XXL"><label for="js-xxl">XXL</label>
-                </div>
+                <!-- built from GU_CONFIG.SIZES.jacket so an unavailable size
+                     can never be ordered -->
+                <div class="size-picker" id="jacket-size-picker"
+                     role="radiogroup" aria-labelledby="jacket-size-label"></div>
                 <p class="field__error">Pick a jacket size.</p>
               </div>
             </div>
@@ -369,13 +417,11 @@
 
           <div class="field" id="field-tshirtSize">
             <label id="tshirt-size-label">T-shirt size</label>
-            <div class="size-picker" role="radiogroup" aria-labelledby="tshirt-size-label">
-              <input type="radio" id="ts-s"   name="tshirtSize" value="S"><label for="ts-s">S</label>
-              <input type="radio" id="ts-m"   name="tshirtSize" value="M"><label for="ts-m">M</label>
-              <input type="radio" id="ts-l"   name="tshirtSize" value="L"><label for="ts-l">L</label>
-              <input type="radio" id="ts-xl"  name="tshirtSize" value="XL"><label for="ts-xl">XL</label>
-              <input type="radio" id="ts-xxl" name="tshirtSize" value="XXL"><label for="ts-xxl">XXL</label>
-            </div>
+            <!-- rebuilt whenever the fit changes — the regular tee has no S,
+                 the full-sleeve cut does -->
+            <div class="size-picker" id="tshirt-size-picker"
+                 role="radiogroup" aria-labelledby="tshirt-size-label"></div>
+            <p class="size-note" id="tshirt-size-hint" style="margin-top:10px"></p>
             <p class="field__error">Pick a t-shirt size.</p>
           </div>
         </div>
@@ -473,8 +519,8 @@
 
     <div class="faq">
       <div class="faq__item">
-        <button class="faq__q" aria-expanded="false">When do orders close?<span class="faq__sign">+</span></button>
-        <div class="faq__a"><p>Orders close <strong data-deadline>—</strong>. We order in one batch from the manufacturer, so we can't add jackets after that.</p></div>
+        <button class="faq__q" aria-expanded="false">How long is this available?<span class="faq__sign">+</span></button>
+        <div class="faq__a"><p>Everything is made to order in a single batch. Once we send that batch to the manufacturer we can't add to it, so don't leave it late — we'll announce the cutoff on Instagram and in the class WhatsApp group.</p></div>
       </div>
 
       <div class="faq__item">

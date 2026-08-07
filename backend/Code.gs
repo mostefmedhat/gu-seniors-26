@@ -26,7 +26,17 @@ var CONFIG = {
 
   MAX_NAME_ON_BACK: 12,
 
-  VALID_SIZES: ['S', 'M', 'L', 'XL', 'XXL'],
+  /**
+   * Sizes actually manufactured, per garment. MUST match SIZES in
+   * assets/js/config.js. The jacket and the regular tee are not made in S —
+   * only the full-sleeve cut is.
+   */
+  VALID_SIZES: {
+    jacket:        ['M', 'L', 'XL', '2XL'],
+    tshirtRegular: ['M', 'L', 'XL', '2XL'],
+    tshirtHijabi:  ['S', 'M', 'L', 'XL', '2XL']
+  },
+
   VALID_PAYMENTS: ['InstaPay', 'Vodafone Cash', 'Cash'],
   VALID_FITS: ['Regular', 'Full sleeve'],
 
@@ -169,7 +179,7 @@ function validate(b) {
       return { error: 'BAD_NAME_ON_BACK' };
     }
     if (!/^[0-9]{1,2}$/.test(numberOnBack)) return { error: 'BAD_NUMBER_ON_BACK' };
-    if (CONFIG.VALID_SIZES.indexOf(jacketSize) === -1) return { error: 'BAD_JACKET_SIZE' };
+    if (CONFIG.VALID_SIZES.jacket.indexOf(jacketSize) === -1) return { error: 'BAD_JACKET_SIZE' };
   }
 
   var tshirtSize = '', tshirtFit = '';
@@ -177,8 +187,13 @@ function validate(b) {
     tshirtSize = str(b.tshirtSize).toUpperCase();
     tshirtFit  = str(b.tshirtFit);
 
-    if (CONFIG.VALID_SIZES.indexOf(tshirtSize) === -1) return { error: 'BAD_TSHIRT_SIZE' };
-    if (CONFIG.VALID_FITS.indexOf(tshirtFit) === -1)   return { error: 'BAD_FIT' };
+    if (CONFIG.VALID_FITS.indexOf(tshirtFit) === -1) return { error: 'BAD_FIT' };
+
+    // The size run depends on the fit — the regular tee has no S.
+    var run = (tshirtFit === 'Full sleeve')
+      ? CONFIG.VALID_SIZES.tshirtHijabi
+      : CONFIG.VALID_SIZES.tshirtRegular;
+    if (run.indexOf(tshirtSize) === -1) return { error: 'BAD_TSHIRT_SIZE' };
   }
 
   if (CONFIG.VALID_PAYMENTS.indexOf(payment) === -1) return { error: 'BAD_PAYMENT' };
